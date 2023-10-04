@@ -5,7 +5,7 @@ on: push
 jobs:
   orderservice:
     runs-on: ubuntu-latest
-    name: Java 17 build, test, deliver order-service container
+    name: Java 17 build, test, deliver hotel-service container
     steps:
       - name: Check out repository
         uses: actions/checkout@v3
@@ -18,17 +18,17 @@ jobs:
           distribution: adopt
         
       - name: Build, test and package project
-        working-directory: ./order-service
+        working-directory: ./hotel-service
         run: mvn package -DskipTests
         
       - name: Docker login
         run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Docker Build
-        run: docker build -t ${{ secrets.DOCKER_USER }}/order-service:latest ./order-service
+        run: docker build -t ${{ secrets.DOCKER_USER }}/hotel-service:latest ./hotel-service
 
       - name: Upload container to Docker Hub with Push
-        run: docker push ${{ secrets.DOCKER_USER }}/order-service:latest
+        run: docker push ${{ secrets.DOCKER_USER }}/hotel-service:latest
   apigateway:
     runs-on: ubuntu-latest
     name: Java 17 build, test, deliver ede-api-gateway container
