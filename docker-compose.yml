@@ -2,7 +2,7 @@ services:
   mysql-hotel:
     image: mysql:latest
     ports:
-      - 3306:3306
+      - 3307:3306
     volumes:
       - mysql_hotel_data:/var/lib/mysql
     environment:
@@ -11,7 +11,7 @@ services:
   mysql-room:
     image: mysql:latest
     ports:
-      - 3307:3306
+      - 3306:3306
     volumes:
       - mysql_room_data:/var/lib/mysql
     environment:
@@ -29,7 +29,7 @@ services:
       MYSQL_DB_USERNAME: root
       MYSQL_DB_PASSWORD: 1234
       MYSQL_DB_HOST: mysql-room
-      MYSQL_DB_PORT: 3307
+      MYSQL_DB_PORT: 3306
 
   hotel-service:
     depends_on:
@@ -41,18 +41,21 @@ services:
       MYSQL_DB_USERNAME: root
       MYSQL_DB_PASSWORD: 1234
       MYSQL_DB_HOST: mysql-hotel
-      MYSQL_DB_PORT: 3306
+      MYSQL_DB_PORT: 3307
 
   api-gateway:
     depends_on:
+      - room-service
       - hotel-service
     image: eliasgps/ede-api-gateway
     ports:
       - 8083:8083
     links:
+      - room-service
       - hotel-service
     environment:
-      ORDER_HOTEL_BASEURL: hotel-service:8081
+      ROOM_SERVICE_BASEURL: room-service:8082
+      HOTEL_SERVICE_BASEURL: hotel-service:8081
 
 volumes:
   mysql_room_data:

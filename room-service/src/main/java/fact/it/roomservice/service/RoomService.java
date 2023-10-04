@@ -3,6 +3,7 @@ package fact.it.roomservice.service;
 import fact.it.roomservice.dto.RoomResponse;
 import fact.it.roomservice.model.Room;
 import fact.it.roomservice.repository.RoomRepository;
+import jakarta.annotation.PostConstruct;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,21 @@ import java.util.stream.Collectors;
 public class RoomService {
 
     private final RoomRepository roomRepository;
+
+    @PostConstruct
+    public void loadData() {
+        if(roomRepository.count() <= 0){
+            Room room = new Room();
+            room.setPricePerDay(59);
+            room.setAmountOfBeds(3);
+            room.setRoomSize(300);
+            room.setKitchen(false);
+            room.setTelevision(true);
+
+
+            roomRepository.save(room);
+        }
+    }
 
     public List<RoomResponse> getAllRooms() {
         List<Room> rooms = roomRepository.findAll();
