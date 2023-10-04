@@ -1,0 +1,33 @@
+services:
+  mysql-hotel:
+    image: mysql:latest
+    ports:
+      - 3306:3306
+    volumes:
+      - mysql_hotel_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: 1234
+
+  hotel-service:
+    image: eliasgps/hotel-service
+    ports:
+      - 8081:8081
+    environment:
+      MYSQL_DB_USERNAME: root
+      MYSQL_DB_PASSWORD: 1234
+      MYSQL_DB_HOST: mysql-hotel
+      MYSQL_DB_PORT: 3306
+
+  api-gateway:
+    depends_on:
+      - hotel-service
+    image: eliasgps/ede-api-gateway
+    ports:
+      - 8083:8083
+    links:
+      - hotel-service
+    environment:
+      ORDER_HOTEL_BASEURL: hotel-service:8081
+
+volumes:
+  mysql_hotel_data:

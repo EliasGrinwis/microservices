@@ -18,3 +18,9 @@ spring:
             - Path=/hotels
           filters:
             - SetPath=/api/hotel
+        - id: room-service
+          uri: http://${ROOM_SERVICE_BASEURL:localhost:8082}
+          predicates:
+            - Path=/rooms
+          filters:
+            - SetPath=/api/room
