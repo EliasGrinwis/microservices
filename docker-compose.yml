@@ -8,7 +8,32 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: 1234
 
+  mysql-room:
+    image: mysql:latest
+    ports:
+      - 3307:3306
+    volumes:
+      - mysql_room_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: 1234
+
+  room-service:
+    depends_on:
+      - mysql-room
+    image: eliasgps/room-service
+    ports:
+      - 8082:8082
+    links:
+      - mysql-room
+    environment:
+      MYSQL_DB_USERNAME: root
+      MYSQL_DB_PASSWORD: 1234
+      MYSQL_DB_HOST: mysql-room
+      MYSQL_DB_PORT: 3307
+
   hotel-service:
+    depends_on:
+      - room-service
     image: eliasgps/hotel-service
     ports:
       - 8081:8081
@@ -30,4 +55,5 @@ services:
       ORDER_HOTEL_BASEURL: hotel-service:8081
 
 volumes:
+  mysql_room_data:
   mysql_hotel_data:
