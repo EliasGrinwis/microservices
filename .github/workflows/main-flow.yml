@@ -25,10 +25,10 @@ jobs:
         run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Docker Build
-        run: docker build -t ${{ secrets.DOCKER_USER }}/hotel-service:latest ./hotel-service
+        run: docker build -t ${{ secrets.DOCKER_USER }}/room-service:latest ./room-service
 
       - name: Upload container to Docker Hub with Push
-        run: docker push ${{ secrets.DOCKER_USER }}/hotel-service:latest
+        run: docker push ${{ secrets.DOCKER_USER }}/room-service:latest
   hotelservice:
     runs-on: ubuntu-latest
     name: Java 17 build, test, deliver hotel-service container
