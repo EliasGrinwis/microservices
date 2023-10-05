@@ -24,3 +24,9 @@ spring:
             - Path=/rooms
           filters:
             - SetPath=/api/room
+        - id: customer-service
+          uri: http://${CUSTOMER_SERVICE_BASEURL:localhost:8080}
+          predicates:
+            - Path=/customers
+          filters:
+            - SetPath=/api/customer
