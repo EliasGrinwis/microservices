@@ -51,7 +51,7 @@
                             <artifactId>lombok</artifactId>
                         </exclude>
                     </excludes>
-                </configuration>
+            </configuration>
         </plugins>
     </build>
 
