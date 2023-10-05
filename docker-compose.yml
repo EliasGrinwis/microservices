@@ -48,7 +48,7 @@ services:
       MYSQL_DB_USERNAME: root
       MYSQL_DB_PASSWORD: abc123
       MYSQL_DB_HOST: mysql-room
-      MYSQL_DB_PORT: 3306
+      MYSQL_DB_PORT: 3307
 
   hotel-service:
     depends_on:
@@ -81,6 +81,7 @@ services:
     environment:
       CUSTOMER_SERVICE_BASEURL: customer-service:8080
       HOTEL_SERVICE_BASEURL: hotel-service:8081
+      ROOM_SERVICE_BASEURL: room-service:8082
 
 volumes:
   mongodb_customer_data:

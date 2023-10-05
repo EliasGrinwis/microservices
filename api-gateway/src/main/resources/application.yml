@@ -16,12 +16,14 @@ spring:
           uri: http://${HOTEL_SERVICE_BASEURL:localhost:8081}
           predicates:
             - Path=/hotels
+            - Method=GET
           filters:
             - SetPath=/api/hotel
         - id: room-service
           uri: http://${ROOM_SERVICE_BASEURL:localhost:8082}
           predicates:
             - Path=/rooms
+            - Method=GET
           filters:
             - SetPath=/api/room
         - id: customer-service
