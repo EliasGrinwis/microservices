@@ -36,30 +36,30 @@ services:
       MONGODB_PORT: 27017
       MONGODB_HOST: mongo-customers
 
-  # room-service:
-  #   depends_on:
-  #     - mysql-room
-  #   image: eliasgps/room-service
-  #   ports:
-  #     - 8082:8082
-  #   links:
-  #     - mysql-room
-  #   environment:
-  #     MYSQL_DB_USERNAME: root
-  #     MYSQL_DB_PASSWORD: abc123
-  #     MYSQL_DB_HOST: mysql-room
-  #     MYSQL_DB_PORT: 3306
+  room-service:
+    depends_on:
+      - mysql-room
+    image: eliasgps/room-service
+    ports:
+      - 8082:8082
+    links:
+      - mysql-room
+    environment:
+      MYSQL_DB_USERNAME: root
+      MYSQL_DB_PASSWORD: abc123
+      MYSQL_DB_HOST: mysql-room
+      MYSQL_DB_PORT: 3306
 
   hotel-service:
     depends_on:
       - customer-service
-      # - room-service
+      - room-service
     image: eliasgps/hotel-service
     ports:
       - 8081:8081
     links:
       - customer-service
-      # - room-service
+      - room-service
     environment:
       CUSTOMER_SERVICE_BASEURL: customer-service:8080
       ROOM_INFO_SERVICE_BASEURL: room-service:8082
