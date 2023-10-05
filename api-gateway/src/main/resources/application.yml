@@ -28,5 +28,6 @@ spring:
           uri: http://${CUSTOMER_SERVICE_BASEURL:localhost:8080}
           predicates:
             - Path=/customers
+            - Method=GET
           filters:
             - SetPath=/api/customer

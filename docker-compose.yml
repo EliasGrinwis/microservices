@@ -24,7 +24,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: abc123
 
-  product-service:
+  customer-service:
     depends_on:
       - mongo-customers
     image: eliasgps/customer-service
@@ -75,7 +75,7 @@ services:
       - customer-service
       - hotel-service
     environment:
-      PRODUCT_SERVICE_BASEURL: product-service:8080
+      CUSTOMER_SERVICE_BASEURL: customer-service:8080
       HOTEL_SERVICE_BASEURL: hotel-service:8081
 
 volumes:
