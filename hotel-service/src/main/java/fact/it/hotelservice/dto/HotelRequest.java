@@ -7,8 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class HotelResponse {
-    private Long id;
+public class HotelRequest {
     private String name;
     private String address;
 }

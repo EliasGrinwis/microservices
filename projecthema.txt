@@ -1,7 +1,0 @@
-Mijn project bestaat uit 3 microservices:
-
-hotel-service: Hier houden we alle info over hotels bij, zoals locaties,....
-room-service: Dit gaat over de kamers zelf zoals kamertypes, prijzen en of ze beschikbaar zijn.
-customer-service: Dit is waar nieuwe klanten zich registreren en hun profielgegevens beheren.
-
-Ik doe dit project alleen. Ik zit in team "Projectreeks 21".

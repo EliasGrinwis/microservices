@@ -25,6 +25,16 @@ public class SecurityConfig {
                 .oauth2ResourceServer(oauth2 -> oauth2
                         .jwt(withDefaults())
                 );
+        serverHttpSecurity
+                .authorizeExchange(exchange ->
+                        exchange.pathMatchers(HttpMethod.GET,"/rooms")
+                                .permitAll()
+                                .anyExchange()
+                                .authenticated()
+                )
+                .oauth2ResourceServer(oauth2 -> oauth2
+                        .jwt(withDefaults())
+                );
         return serverHttpSecurity.build();
     }
 }

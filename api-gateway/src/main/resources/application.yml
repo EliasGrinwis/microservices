@@ -24,21 +24,52 @@ spring:
   cloud:
     gateway:
       routes:
-        - id: hotel-service
+        # GET HOTELS
+        - id: hotel-service-all
           uri: http://${HOTEL_SERVICE_BASEURL:localhost:8081}
           predicates:
             - Path=/hotels
             - Method=GET
           filters:
             - SetPath=/api/hotel
-        - id: room-service
+
+        # POST HOTEL
+        - id: hotel-service-create
+          uri: http://${HOTEL_SERVICE_BASEURL:localhost:8081}
+          predicates:
+            - Path=/hotels
+            - Method=POST
+          filters:
+            - SetPath=/api/hotel
+
+        # PUT HOTEL
+        - id: hotel-service-update
+          uri: http://${HOTEL_SERVICE_BASEURL:localhost:8081}
+          predicates:
+            - Path=/hotels/{id}
+            - Method=PUT
+          filters:
+            - SetPath=/api/hotel/{id}
+
+        # DELETE HOTEL
+        - id: hotel-service-delete
+          uri: http://${HOTEL_SERVICE_BASEURL:localhost:8081}
+          predicates:
+            - Path=/hotels/{id}
+            - Method=DELETE
+          filters:
+            - SetPath=/api/hotel/{id}
+
+        # GET ROOMS
+        - id: room-service-all
           uri: http://${ROOM_SERVICE_BASEURL:localhost:8082}
           predicates:
             - Path=/rooms
             - Method=GET
           filters:
             - SetPath=/api/room
-        - id: customer-service
+        # GET CUSTOMERS
+        - id: customer-service-all
           uri: http://${CUSTOMER_SERVICE_BASEURL:localhost:8080}
           predicates:
             - Path=/customers
