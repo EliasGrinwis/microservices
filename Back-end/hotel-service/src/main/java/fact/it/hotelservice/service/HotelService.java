@@ -29,10 +29,14 @@ public class HotelService {
 
     @PostConstruct
     public void loadData() {
+        hotelRepository.deleteAll();
         if(hotelRepository.count() <= 0){
             Hotel hotel = new Hotel();
-            hotel.setName("Test hotel");
-            hotel.setAddress("Goorerf 27 2560 Nijlen");
+            hotel.setName("Grand Hotel Riviera");
+            hotel.setDescription("Experience luxury and comfort at the Grand Hotel Riviera, located in the heart of Amsterdam.");
+            hotel.setCity("Amsterdam");
+            hotel.setAddress("Keizersgracht 123, 1015 CJ Amsterdam, Netherlands");
+            hotel.setImage("https://firebasestorage.googleapis.com/v0/b/microservices-ea59d.appspot.com/o/riviera.jpg?alt=media&token=5c3161fc-e82f-4f6a-97fb-94c8c7a111f6");
 
             hotelRepository.save(hotel);
         }
@@ -45,7 +49,11 @@ public class HotelService {
                 .map(hotel -> new HotelResponse(
                         hotel.getId(),
                         hotel.getName(),
-                        hotel.getAddress()
+                        hotel.getDescription(),
+                        hotel.getCity(),
+                        hotel.getAddress(),
+                        hotel.getImage()
+
                 ))
                 .collect(Collectors.toList());
     }

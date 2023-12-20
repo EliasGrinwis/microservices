@@ -17,5 +17,8 @@ public class Hotel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    private String description;
+    private String city;
     private String address;
+    private String image;
 }

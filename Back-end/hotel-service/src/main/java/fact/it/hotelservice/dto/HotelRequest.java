@@ -9,5 +9,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class HotelRequest {
     private String name;
+    private String description;
+    private String city;
     private String address;
+    private String image;
 }
