@@ -3,11 +3,12 @@ name: Build and deliver containers
 on: push
 
 jobs:
-  customerservice:
+  Back-end:
     runs-on: ubuntu-latest
-    name: Java 17 build, test, deliver customer-service container
+    name: Build and deliver containers
+
     steps:
-      - name: Check out repository
+      - name: Checkout repository
         uses: actions/checkout@v3
 
       - name: Set up JDK 17
@@ -17,93 +18,34 @@ jobs:
           cache: maven
           distribution: adopt
 
-      - name: Build, test and package project
-        working-directory: ./customer-service
-        run: mvn package -DskipTests
+      - name: Build, test, and deliver customer-service container
+        run: |
+          cd ./Back-end/customer-service
+          mvn package -DskipTests
+          docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
+          docker build -t ${{ secrets.DOCKER_USER }}/customer-service:latest .
+          docker push ${{ secrets.DOCKER_USER }}/customer-service:latest
 
-      - name: Docker login
-        run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
+      - name: Build, test, and deliver room-service container
+        run: |
+          cd ./Back-end/room-service
+          mvn package -DskipTests
+          docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
+          docker build -t ${{ secrets.DOCKER_USER }}/room-service:latest .
+          docker push ${{ secrets.DOCKER_USER }}/room-service:latest
 
-      - name: Docker Build
-        run: docker build -t ${{ secrets.DOCKER_USER }}/customer-service:latest ./customer-service
+      - name: Build, test, and deliver hotel-service container
+        run: |
+          cd ./Back-end/hotel-service
+          mvn package -DskipTests
+          docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
+          docker build -t ${{ secrets.DOCKER_USER }}/hotel-service:latest .
+          docker push ${{ secrets.DOCKER_USER }}/hotel-service:latest
 
-      - name: Upload container to Docker Hub with Push
-        run: docker push ${{ secrets.DOCKER_USER }}/customer-service:latest
-  roomservice:
-    runs-on: ubuntu-latest
-    name: Java 17 build, test, deliver room-service container
-    steps:
-      - name: Check out repository
-        uses: actions/checkout@v3
-
-      - name: Set up JDK 17
-        uses: actions/setup-java@v3
-        with:
-          java-version: 17
-          cache: maven
-          distribution: adopt
-
-      - name: Build, test and package project
-        working-directory: ./room-service
-        run: mvn package -DskipTests
-
-      - name: Docker login
-        run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
-
-      - name: Docker Build
-        run: docker build -t ${{ secrets.DOCKER_USER }}/room-service:latest ./room-service
-
-      - name: Upload container to Docker Hub with Push
-        run: docker push ${{ secrets.DOCKER_USER }}/room-service:latest
-  hotelservice:
-    runs-on: ubuntu-latest
-    name: Java 17 build, test, deliver hotel-service container
-    steps:
-      - name: Check out repository
-        uses: actions/checkout@v3
-
-      - name: Set up JDK 17
-        uses: actions/setup-java@v3
-        with:
-          java-version: 17
-          cache: maven
-          distribution: adopt
-
-      - name: Build, test and package project
-        working-directory: ./hotel-service
-        run: mvn package -DskipTests
-
-      - name: Docker login
-        run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
-
-      - name: Docker Build
-        run: docker build -t ${{ secrets.DOCKER_USER }}/hotel-service:latest ./hotel-service
-
-      - name: Upload container to Docker Hub with Push
-        run: docker push ${{ secrets.DOCKER_USER }}/hotel-service:latest
-  apigateway:
-    runs-on: ubuntu-latest
-    name: Java 17 build, test, deliver ede-api-gateway container
-    steps:
-      - name: Check out repository
-        uses: actions/checkout@v3
-
-      - name: Set up JDK 17
-        uses: actions/setup-java@v3
-        with:
-          java-version: 17
-          cache: maven
-          distribution: adopt
-
-      - name: Build, test and package project
-        working-directory: ./api-gateway
-        run: mvn package -DskipTests
-
-      - name: Docker login
-        run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
-
-      - name: Docker Build
-        run: docker build --build-arg GOOGLE_CLIENTID=${{ secrets.GOOGLE_CLIENTID }} --build-arg GOOGLE_CLIENTSECRET=${{ secrets.GOOGLE_CLIENTSECRET }} -t ${{ secrets.DOCKER_USER }}/ede-api-gateway:latest ./api-gateway
-
-      - name: Upload container to Docker Hub with Push
-        run: docker push ${{ secrets.DOCKER_USER }}/ede-api-gateway:latest
+      - name: Build, test, and deliver ede-api-gateway container
+        run: |
+          cd ./Back-end/api-gateway
+          mvn package -DskipTests
+          docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
+          docker build --build-arg GOOGLE_CLIENTID=${{ secrets.GOOGLE_CLIENTID }} --build-arg GOOGLE_CLIENTSECRET=${{ secrets.GOOGLE_CLIENTSECRET }} -t ${{ secrets.DOCKER_USER }}/ede-api-gateway:latest .
+          docker push ${{ secrets.DOCKER_USER }}/ede-api-gateway:latest

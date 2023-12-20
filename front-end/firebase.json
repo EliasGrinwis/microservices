@@ -1,0 +1,13 @@
+{
+  "hosting": {
+    "site": "microservices-hotels",
+    "public": "public",
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}

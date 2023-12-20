@@ -1,5 +1,5 @@
 import axios from "axios";
-import configData from "../config.json";
+import configData from "../config/api.json";
 
 const hotelBaseUrl = configData.api + "hotels";
 
