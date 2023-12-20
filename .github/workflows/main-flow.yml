@@ -51,18 +51,25 @@ jobs:
   
   front-end:
     runs-on: ubuntu-latest
-
+        
     defaults:
       run:
         working-directory: ./Front-end
-
+        
     steps:
-      - uses: actions/checkout@v3
-      - run: npm ci && npm run build
-      - uses: FirebaseExtended/action-hosting-deploy@v0
-        with:
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_MICROSERVICES_EA59D }}'
-          projectId: microservices-ea59d
-          entryPoint: 'Front-end'
+        - uses: actions/checkout@master
+        - uses: actions/setup-node@master
+          with:
+            node-version: "18.17.1"
+              
+        - name: Install Dependencies
+          run: npm install
+        
+        - name: Build
+          run: npm run build
+        
+        - name: Deploy to Firebase
+          run: |
+            npm install -g firebase-tools
+            firebase deploy --token ${{ secrets.FIREBASE_TOKEN }}
 
