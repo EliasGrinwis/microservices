@@ -39,7 +39,7 @@ public class SecurityConfig {
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.addAllowedOrigin("http://localhost:3000"); // Add your frontend origin
+        //configuration.addAllowedOrigin("http://localhost:3000"); // Add your frontend origin
         configuration.addAllowedOrigin("https://microservices-hotels.web.app");
         configuration.addAllowedMethod("*");
         configuration.addAllowedHeader("*");
