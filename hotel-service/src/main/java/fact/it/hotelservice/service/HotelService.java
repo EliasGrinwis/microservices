@@ -7,6 +7,7 @@ import fact.it.hotelservice.repository.HotelRepository;
 import jakarta.annotation.PostConstruct;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,6 +20,12 @@ import java.util.stream.Collectors;
 public class HotelService {
 
     private final HotelRepository hotelRepository;
+
+    @Value("${customerservice.baseurl}")
+    private String customerServiceBaseUrl;
+
+    @Value("${roomservice.baseurl}")
+    private String roomServiceBaseUrl;
 
     @PostConstruct
     public void loadData() {
