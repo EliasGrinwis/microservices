@@ -49,26 +49,26 @@ jobs:
           docker build --build-arg GOOGLE_CLIENTID=${{ secrets.GOOGLE_CLIENTID }} --build-arg GOOGLE_CLIENTSECRET=${{ secrets.GOOGLE_CLIENTSECRET }} -t ${{ secrets.DOCKER_USER }}/ede-api-gateway:latest .
           docker push ${{ secrets.DOCKER_USER }}/ede-api-gateway:latest
   
-  front-end:
-    runs-on: ubuntu-latest
+  # front-end:
+  #   runs-on: ubuntu-latest
 
-    defaults:
-      run:
-        working-directory: ./Front-end
+  #   defaults:
+  #     run:
+  #       working-directory: ./Front-end
     
-    steps:
-      - uses: actions/checkout@master
-      - uses: actions/setup-node@master
-        with:
-          node-version: "18.17.1"
+  #   steps:
+  #     - uses: actions/checkout@master
+  #     - uses: actions/setup-node@master
+  #       with:
+  #         node-version: "18.17.1"
           
-      - name: Install Dependencies
-        run: npm install
+  #     - name: Install Dependencies
+  #       run: npm install
     
-      - name: Build
-        run: npm run build
+  #     - name: Build
+  #       run: npm run build
     
-      - name: Deploy to Firebase
-        run: |
-          npm install -g firebase-tools
-          firebase deploy --token ${{ secrets.FIREBASE_TOKEN }}
+  #     - name: Deploy to Firebase
+  #       run: |
+  #         npm install -g firebase-tools
+  #         firebase deploy --token ${{ secrets.FIREBASE_TOKEN }}
