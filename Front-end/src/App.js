@@ -1,51 +1,28 @@
-import "./App.css";
-import HotelList from "./components/hotel_list";
-import heroImage from "./assets/hero.jpg"; // Update the path accordingly
+import "./Navbar.css";
+import Home from "./components/home";
+import Dashboard from "./components/dashboard";
+
+import React from "react";
+import {BrowserRouter, Route, Routes, Link} from "react-router-dom";
 
 function App() {
   return (
-    <div>
-      {/* Warm and professional hero background */}
-      <div className="h-screen overflow-hidden relative">
-        <img
-          src={heroImage}
-          alt="Luxurious hotel with swimming pool"
-          className="w-full h-full object-cover filter brightness-90"
-        />
-        {/* Overlay to improve contrast */}
-        <div className="absolute inset-0 bg-black opacity-40"></div>
-
-        {/* Centered text */}
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center text-white z-10">
-          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-4">
-            Welcome to Your Luxury Retreat
-          </h1>
-          <p className="text-md md:text-lg lg:text-xl mb-8">
-            Indulge in the warmth and sophistication of our world-class hotels,
-            where luxury meets comfort. Experience the extraordinary on your
-            dream holiday.
-          </p>
-          <button className="bg-yellow-400 hover:bg-yellow-300 text-black font-bold py-3 px-6 rounded-full">
-            Explore Destinations
-          </button>
+    <BrowserRouter>
+      <nav className="bg-gray-300">
+        <div className="nav-container w-[100%] sm:max-w-[640px] md:max-w-[768px] lg:max-w-[1024px] xl:max-w-[1280px] 2xl:max-w-[1536px]">
+          <div className="logo">Your Hotel</div>
+          <div className="links">
+            <Link to="/">Home</Link>
+            <Link to="/dashboard">Dashboard</Link>
+          </div>
         </div>
-      </div>
+      </nav>
 
-      {/* Featured Hotels section with warm tones */}
-      <div className="container mx-auto bg-white text-gray-800 p-8 text-center md:text-left mt-8">
-        <div className="mb-6">
-          <h2 class="text-3xl lg:text-4xl font-bold text-black">
-            Featured Hotels
-          </h2>
-          <hr class="my-3 w-14 mx-auto md:mx-0  border-yellow-400 border" />
-          <p class="text-custom-grey-text text-lg mb-6">
-            Your perfect holiday destination awaits you.
-          </p>
-        </div>
-
-        <HotelList />
-      </div>
-    </div>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
