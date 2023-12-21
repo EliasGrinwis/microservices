@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import HotelApi from "../apis/hotel_api";
-import Loading from "./loading";
-import Error from "./error";
+import Loading from "../components/loading";
+import Error from "../components/error";
 import heroImage from "../assets/hero.jpg"; // Update the path accordingly
 
 function HotelList() {
