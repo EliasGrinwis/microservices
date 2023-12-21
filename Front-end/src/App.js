@@ -2,25 +2,44 @@ import "./Navbar.css";
 import Home from "./components/home";
 import Dashboard from "./components/dashboard";
 
-import React from "react";
-import {BrowserRouter, Route, Routes, Link} from "react-router-dom";
+import React, {useEffect, useState} from "react";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
+import Login from "./components/login";
+import Navbar from "./components/navbar";
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userToken, setUserToken] = useState(null);
+
+  useEffect(() => {
+    const storedIsLoggedIn = JSON.parse(localStorage.getItem("isLoggedIn"));
+
+    if (storedIsLoggedIn) {
+      setIsLoggedIn(true);
+      setUserToken(localStorage.getItem("userToken"));
+      console.log(userToken);
+    }
+  }, [userToken]);
+
   return (
     <BrowserRouter>
-      <nav className="bg-gray-300">
-        <div className="nav-container w-[100%] sm:max-w-[640px] md:max-w-[768px] lg:max-w-[1024px] xl:max-w-[1280px] 2xl:max-w-[1536px]">
-          <div className="logo">Your Hotel</div>
-          <div className="links">
-            <Link to="/">Home</Link>
-            <Link to="/dashboard">Dashboard</Link>
-          </div>
-        </div>
-      </nav>
-
+      <Navbar
+        isLoggedIn={isLoggedIn}
+        setIsLoggedIn={setIsLoggedIn}
+        setUserToken={setUserToken}
+      />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route
+          path="/dashboard"
+          element={<Dashboard userToken={userToken} />}
+        />
+        <Route
+          path="/login"
+          element={
+            <Login setIsLoggedIn={setIsLoggedIn} setUserToken={setUserToken} />
+          }
+        />
       </Routes>
     </BrowserRouter>
   );

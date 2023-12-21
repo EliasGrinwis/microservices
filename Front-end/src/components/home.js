@@ -30,11 +30,11 @@ function Home() {
 
       <div className="container mx-auto bg-white text-gray-800 text-center md:text-left mt-8">
         <div className="mb-3">
-          <h2 class="text-3xl lg:text-4xl font-bold text-black">
+          <h2 className="text-3xl lg:text-4xl font-bold text-black">
             Featured Hotels
           </h2>
-          <hr class="my-3 w-14 mx-auto md:mx-0  border-yellow-400 border" />
-          <p class="text-custom-grey-text text-lg">
+          <hr className="my-3 w-14 mx-auto md:mx-0  border-yellow-400 border" />
+          <p className="text-custom-grey-text text-lg">
             Your perfect holiday destination awaits you.
           </p>
         </div>

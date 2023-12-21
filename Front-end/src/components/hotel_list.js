@@ -2,7 +2,6 @@ import React, {useState, useEffect} from "react";
 import HotelApi from "../apis/hotel_api";
 import Loading from "../components/loading";
 import Error from "../components/error";
-import heroImage from "../assets/hero.jpg"; // Update the path accordingly
 
 function HotelList() {
   const [hotels, setHotels] = useState([]);
@@ -33,7 +32,7 @@ function HotelList() {
       className="my-6 bg-white rounded-xl overflow-hidden shadow-md">
       <img
         className="w-full h-56 object-cover"
-        src={heroImage}
+        src={hotel.image}
         alt={hotel.name}
       />
       <div className="p-6">

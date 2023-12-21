@@ -8,6 +8,26 @@ class HotelApi {
     return axios.get(hotelBaseUrl);
   }
 
+  static createHotel(hotel, userToken) {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userToken}`,
+        "Content-Type": "application/json",
+      },
+    };
+    return axios.post(hotelBaseUrl, hotel, config);
+  }
+
+  static deleteHotel(hotelId, userToken) {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userToken}`,
+        "Content-Type": "application/json",
+      },
+    };
+    return axios.delete(`${hotelBaseUrl}/${hotelId}`, config);
+  }
+
   // Coming soon
   //   static getHotel(hotel) {
   //     return axios.get(hotelBaseUrl)

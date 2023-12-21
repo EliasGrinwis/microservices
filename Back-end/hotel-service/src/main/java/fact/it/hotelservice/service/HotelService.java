@@ -62,7 +62,10 @@ public class HotelService {
         Hotel hotel = new Hotel();
 
         hotel.setName(hotelRequest.getName());
+        hotel.setDescription(hotelRequest.getDescription());
         hotel.setAddress(hotelRequest.getAddress());
+        hotel.setCity(hotelRequest.getCity());
+        hotel.setImage(hotelRequest.getImage());
 
         if (!hotelRepository.existsByName(hotel.getName())) {
             hotelRepository.save(hotel);

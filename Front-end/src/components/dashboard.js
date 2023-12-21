@@ -1,7 +1,8 @@
 import React, {useState} from "react";
 import {Tab, Tabs, TabList, TabPanel} from "react-tabs";
+import ManageHotels from "./manage_hotels";
 
-function Dashboard() {
+function Dashboard({userToken}) {
   const [tabIndex, setTabIndex] = useState(0);
 
   const handleTabChange = (index) => {
@@ -12,12 +13,6 @@ function Dashboard() {
   const customersData = [
     {id: 1, name: "John Doe", email: "john@example.com"},
     {id: 2, name: "Jane Smith", email: "jane@example.com"},
-    // Add more data as needed
-  ];
-
-  const hotelsData = [
-    {id: 1, name: "Luxury Hotel", location: "City Center"},
-    {id: 2, name: "Seaside Resort", location: "Beachfront"},
     // Add more data as needed
   ];
 
@@ -39,16 +34,27 @@ function Dashboard() {
 
   return (
     <div>
-      <div className="h-[7vh] overflow-hidden relative">
-        <div className="absolute inset-0 bg-black opacity-40"></div>
-      </div>
       <div className="container mx-auto">
-        <h1>Manage your hotel</h1>
         <Tabs selectedIndex={tabIndex} onSelect={handleTabChange}>
-          <TabList>
-            <Tab>Customers</Tab>
-            <Tab>Hotels</Tab>
-            <Tab>Rooms</Tab>
+          <TabList className="flex flex-wrap -mb-px text-sm font-medium text-center text-gray-500 border-gray-200">
+            <Tab
+              className={`cursor-pointer p-4 border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 ${
+                tabIndex === 0 ? "border-gray-500" : ""
+              }`}>
+              Customers
+            </Tab>
+            <Tab
+              className={`cursor-pointer p-4 border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 ${
+                tabIndex === 1 ? "border-gray-500" : ""
+              }`}>
+              Hotels
+            </Tab>
+            <Tab
+              className={`cursor-pointer p-4 border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 ${
+                tabIndex === 2 ? "border-gray-500" : ""
+              }`}>
+              Rooms
+            </Tab>
           </TabList>
 
           <TabPanel>
@@ -81,32 +87,7 @@ function Dashboard() {
           </TabPanel>
 
           <TabPanel>
-            <h2>Hotel Management</h2>
-            <table>
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>Name</th>
-                  <th>Location</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                {hotelsData.map((row) => (
-                  <tr key={row.id}>
-                    <td>{row.id}</td>
-                    <td>{row.name}</td>
-                    <td>{row.location}</td>
-                    <td>
-                      <button onClick={() => handleEdit(row)}>Edit</button>
-                      <button onClick={() => handleDelete(row.id)}>
-                        Delete
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+            <ManageHotels userToken={userToken} />
           </TabPanel>
 
           <TabPanel>
@@ -140,7 +121,6 @@ function Dashboard() {
             </table>
           </TabPanel>
         </Tabs>
-        <button onClick={() => console.log("Add new row")}>Add New</button>
       </div>
     </div>
   );
