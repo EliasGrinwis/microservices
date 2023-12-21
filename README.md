@@ -2,7 +2,7 @@
 
 ## Url 🔗
 
-[https://microservices-hotels.web.app/]
+https://microservices-hotels.web.app/
 
 ## Theme 🏨
 
