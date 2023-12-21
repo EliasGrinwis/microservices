@@ -49,28 +49,6 @@ jobs:
           docker build --build-arg GOOGLE_CLIENTID=${{ secrets.GOOGLE_CLIENTID }} --build-arg GOOGLE_CLIENTSECRET=${{ secrets.GOOGLE_CLIENTSECRET }} -t ${{ secrets.DOCKER_USER }}/ede-api-gateway:latest .
           docker push ${{ secrets.DOCKER_USER }}/ede-api-gateway:latest
       
-      - name: Install Okteto CLI
-        run: |
-          curl https://get.okteto.com -sSfL | sh
-  
-      - name: Set context to Okteto Cloud
-        uses: okteto/context@latest
-        with:
-          token: ${{ secrets.OKTETO_TOKEN }}
-        
-      - name: Build to Okteto Cloud
-        uses: okteto/build@latest 
-        with: 
-          tag: myapp-backend:latest 
-          file: ./docker-compose.yml 
-        
-      - name: Deploy to Okteto Cloud
-        run: |
-          okteto context use https://cloud.okteto.com
-          okteto deploy
-        env:
-          OKTETO_TOKEN: ${{ secrets.OKTETO_TOKEN }}
-  
   front-end:
     runs-on: ubuntu-latest
         
