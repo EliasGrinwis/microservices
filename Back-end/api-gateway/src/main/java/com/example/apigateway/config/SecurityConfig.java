@@ -18,6 +18,8 @@ import org.springframework.web.cors.reactive.CorsConfigurationSource;
 import org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource;
 import reactor.core.publisher.Mono;
 
+import java.util.Objects;
+
 @Configuration
 @EnableWebFluxSecurity
 public class SecurityConfig {
@@ -40,7 +42,7 @@ public class SecurityConfig {
 
     @Bean
     public KeyResolver keyResolver() {
-        return exchange -> Mono.just(exchange.getRequest().getRemoteAddress().getAddress().getHostAddress());
+        return exchange -> Mono.just(Objects.requireNonNull(exchange.getRequest().getRemoteAddress()).getAddress().getHostAddress());
     }
 
     @Bean
