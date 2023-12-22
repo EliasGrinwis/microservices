@@ -26,7 +26,6 @@ class CustomerApi {
       lastName: lastName,
       email: email,
       picture: picture,
-      // Add other needed properties from the customer object
     };
 
     const config = {
@@ -38,11 +37,10 @@ class CustomerApi {
 
     try {
       const response = await axios.post(customerBaseUrl, customerData, config);
-      console.log("Response Status:", response.status);
       return response;
     } catch (error) {
       console.error("Error:", error);
-      throw error; // You can handle the error further or rethrow it
+      throw error;
     }
   }
 }
