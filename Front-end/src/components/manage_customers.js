@@ -21,7 +21,7 @@ function ManageCustomers({userToken}) {
     };
 
     fetchData();
-  }, []);
+  }, [userToken]);
 
   if (loading) return <Loading />;
   if (error) return <Error />;
@@ -43,7 +43,10 @@ function ManageCustomers({userToken}) {
           {customers.map((customer, i) => (
             <tr key={i}>
               <td className="border p-2">
-                <img className="w-10 rounded-full" src={customer.picture}></img>
+                <img
+                  className="w-10 rounded-full"
+                  alt="avatar"
+                  src={customer.picture}></img>
               </td>
               <td className="border p-2">{customer.firstName}</td>
               <td className="border p-2">{customer.lastName}</td>
