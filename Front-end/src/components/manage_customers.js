@@ -2,7 +2,6 @@ import React, {useState, useEffect} from "react";
 import CustomerApi from "../apis/customer_api";
 import Loading from "../components/loading";
 import Error from "../components/error";
-import {storage, ref, uploadBytes, getDownloadURL} from "../config/firebase";
 
 function ManageCustomers({userToken}) {
   const [customers, setCustomers] = useState([]);
