@@ -36,7 +36,7 @@ public class HotelService {
             hotel.setDescription("Experience luxury and comfort at the Grand Hotel Riviera, located in the heart of Amsterdam.");
             hotel.setCity("Amsterdam");
             hotel.setAddress("Keizersgracht 123, 1015 CJ Amsterdam, Netherlands");
-            hotel.setImage("https://firebasestorage.googleapis.com/v0/b/microservices-ea59d.appspot.com/o/riviera.jpg?alt=media&token=5c3161fc-e82f-4f6a-97fb-94c8c7a111f6");
+            hotel.setImage("https://firebasestorage.googleapis.com/v0/b/microservices-402412.appspot.com/o/images%2Friviera.jpg?alt=media&token=29191ae6-0956-472d-8dfe-72f6cad12720");
 
             hotelRepository.save(hotel);
         }
