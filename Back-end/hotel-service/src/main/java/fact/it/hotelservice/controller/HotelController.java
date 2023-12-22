@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
-@CrossOrigin(origins = "https://microservices-402412.web.app")
 @RestController
 @RequestMapping("/api/hotel")
 @RequiredArgsConstructor

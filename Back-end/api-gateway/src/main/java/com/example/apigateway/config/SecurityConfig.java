@@ -1,5 +1,6 @@
 package com.example.apigateway.config;
 
+import org.springframework.cloud.gateway.filter.ratelimit.KeyResolver;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -11,6 +12,9 @@ import org.springframework.security.web.server.csrf.CookieServerCsrfTokenReposit
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.reactive.CorsConfigurationSource;
 import org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource;
+import reactor.core.publisher.Mono;
+
+import java.util.Objects;
 
 @Configuration
 @EnableWebFluxSecurity
@@ -33,9 +37,14 @@ public class SecurityConfig {
     }
 
     @Bean
+    public KeyResolver keyResolver() {
+        return exchange -> Mono.just(Objects.requireNonNull(exchange.getRequest().getRemoteAddress()).getAddress().getHostAddress());
+    }
+
+    @Bean
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        // Add your frontend origin(s)
+        configuration.addAllowedOrigin("http://localhost:3000");
         configuration.addAllowedOrigin("https://microservices-402412.web.app");
         configuration.addAllowedMethod("*");
         configuration.addAllowedHeader("*");
