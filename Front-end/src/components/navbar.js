@@ -28,12 +28,13 @@ function Navbar({
         <div className="links flex items-center">
           <Link to="/">Home</Link>
           {isLoggedIn && <Link to="/dashboard">Dashboard</Link>}
-          {/* {isLoggedIn && (
+          {isLoggedIn && userProfile.picture !== null ? (
             <img
               className="w-10 rounded-full cursor-pointer"
               src={userProfile.picture}
-              alt="avatar"></img>
-          )} */}
+              alt="avatar"
+            />
+          ) : null}
           {!isLoggedIn && <Link to="/login">Login</Link>}
           {isLoggedIn && <Link onClick={handleLogout}>Logout</Link>}
         </div>
