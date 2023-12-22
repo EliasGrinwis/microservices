@@ -29,8 +29,6 @@ class CustomerApi {
       // Add other needed properties from the customer object
     };
 
-    console.log(customerData);
-
     const config = {
       headers: {
         Authorization: `Bearer ${userToken}`,

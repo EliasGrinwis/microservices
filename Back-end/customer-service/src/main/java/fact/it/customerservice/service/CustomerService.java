@@ -42,18 +42,16 @@ public class CustomerService {
     public boolean createCustomer(CustomerRequest customerRequest) {
         Customer customer = new Customer();
 
-        if (customerRepository.existsByEmail(customerRequest.getEmail())) {
-            return false;
-        }
-
         customer.setFirstName(customerRequest.getFirstName());
         customer.setLastName(customerRequest.getLastName());
         customer.setEmail(customerRequest.getEmail());
         customer.setPicture(customerRequest.getPicture());
 
-        customerRepository.save(customer);
-
-        return true;
+        if (!customerRepository.existsByEmail(customer.getEmail())) {
+            customerRepository.save(customer);
+            return true;
+        }
+        return false;
     }
 
     private CustomerResponse mapToCustomerResponse(Customer customer) {
