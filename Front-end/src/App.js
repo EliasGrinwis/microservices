@@ -10,16 +10,21 @@ import Navbar from "./components/navbar";
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userToken, setUserToken] = useState(null);
+  const [userProfile, setUserProfile] = useState(null);
 
   useEffect(() => {
     const storedIsLoggedIn = JSON.parse(localStorage.getItem("isLoggedIn"));
 
     if (storedIsLoggedIn) {
+      const storedToken = localStorage.getItem("userToken");
+      const storedUserProfile = localStorage.getItem("userProfile");
+      const parsedUserProfile = JSON.parse(storedUserProfile);
+
       setIsLoggedIn(true);
-      setUserToken(localStorage.getItem("userToken"));
-      console.log(userToken);
+      setUserToken(storedToken);
+      setUserProfile(parsedUserProfile);
     }
-  }, [userToken]);
+  }, []);
 
   return (
     <BrowserRouter>
@@ -27,6 +32,8 @@ function App() {
         isLoggedIn={isLoggedIn}
         setIsLoggedIn={setIsLoggedIn}
         setUserToken={setUserToken}
+        setUserProfile={setUserProfile}
+        userProfile={userProfile}
       />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -37,7 +44,11 @@ function App() {
         <Route
           path="/login"
           element={
-            <Login setIsLoggedIn={setIsLoggedIn} setUserToken={setUserToken} />
+            <Login
+              setIsLoggedIn={setIsLoggedIn}
+              setUserToken={setUserToken}
+              setUserProfile={setUserProfile}
+            />
           }
         />
       </Routes>

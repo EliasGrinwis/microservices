@@ -58,6 +58,8 @@ public class HotelService {
                 .collect(Collectors.toList());
     }
 
+
+
     public boolean createHotel(HotelRequest hotelRequest) {
         Hotel hotel = new Hotel();
 

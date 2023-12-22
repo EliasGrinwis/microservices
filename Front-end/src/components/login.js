@@ -1,21 +1,28 @@
 import React, {useEffect, useCallback} from "react";
 import {useNavigate} from "react-router-dom";
+import {jwtDecode} from "jwt-decode";
 
-function Login({setIsLoggedIn, setUserToken}) {
+function Login({setIsLoggedIn, setUserToken, setUserProfile}) {
   const google = window.google;
-  const navigate = useNavigate(); // useNavigate hook for navigation
+  const navigate = useNavigate();
 
   const handleCallbackResponse = useCallback(
     (response) => {
+      let userObject = jwtDecode(response.credential);
+
       setIsLoggedIn(true);
       setUserToken(response.credential);
+      setUserProfile(userObject);
+
+      console.log(userObject);
 
       localStorage.setItem("isLoggedIn", JSON.stringify(true));
       localStorage.setItem("userToken", response.credential);
+      localStorage.setItem("userProfile", JSON.stringify(userObject)); // Convert to JSON string
 
       navigate("/");
     },
-    [navigate, setIsLoggedIn, setUserToken]
+    [navigate, setIsLoggedIn, setUserToken, setUserProfile]
   );
 
   useEffect(() => {
@@ -24,6 +31,7 @@ function Login({setIsLoggedIn, setUserToken}) {
         "549978783695-9a75ht1gsncng95gf8uq8o8jtcp010at.apps.googleusercontent.com",
       callback: handleCallbackResponse,
     });
+
     google.accounts.id.renderButton(document.getElementById("sign-in-div"), {
       theme: "outline",
       size: "large",

@@ -1,5 +1,6 @@
 package fact.it.customerservice.service;
 
+import fact.it.customerservice.dto.CustomerRequest;
 import fact.it.customerservice.dto.CustomerResponse;
 import fact.it.customerservice.model.Customer;
 import fact.it.customerservice.repository.CustomerRepository;
@@ -19,16 +20,13 @@ public class CustomerService {
     private final CustomerRepository customerRepository;
 
     @PostConstruct
-    public void loadData() throws ParseException {
+    public void loadData() {
         if(customerRepository.count() <= 0){
-            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-            Date date = dateFormat.parse("29/07/2003");
-
             Customer customer = Customer.builder()
-                    .skuCode("tube6in")
                     .firstName("Elias")
-                    .lastName("Grinwis Plaat Stultjes")
-                    .dateOfBirth(date)
+                    .lastName("Grinwis")
+                    .email("eliasgrinwis27@gmail.com")
+                    .picture("https://lh3.googleusercontent.com/a/ACg8ocIlPSSdKXQzxGcuj0SFqmx3f2AA4zalQ6FzFe-ouSnyHLk=s96-c")
                     .build();
 
             customerRepository.save(customer);
@@ -41,13 +39,24 @@ public class CustomerService {
         return customerList.stream().map(this::mapToCustomerResponse).toList();
     }
 
+    public boolean createCustomer(CustomerRequest customerRequest) {
+        Customer customer = new Customer();
+
+        customer.setFirstName(customerRequest.getFirstName());
+        customer.setLastName(customerRequest.getLastName());
+        customer.setEmail(customerRequest.getEmail());
+        customer.setPicture(customerRequest.getPicture());
+
+        return true;
+    }
+
     private CustomerResponse mapToCustomerResponse(Customer customer) {
         return CustomerResponse.builder()
                 .id(customer.getId())
-                .skuCode(customer.getSkuCode())
                 .firstName(customer.getFirstName())
                 .lastName(customer.getLastName())
-                .dateOfBirth(customer.getDateOfBirth())
+                .email(customer.getEmail())
+                .picture(customer.getPicture())
                 .build();
     }
 }

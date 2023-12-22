@@ -13,8 +13,8 @@ import java.util.Date;
 @NoArgsConstructor
 public class CustomerResponse {
     private String id;
-    private String skuCode;
     private String firstName;
     private String lastName;
-    private Date dateOfBirth;
+    private String email;
+    private String picture;
 }

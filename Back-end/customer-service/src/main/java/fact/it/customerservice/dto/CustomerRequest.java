@@ -12,8 +12,8 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CustomerRequest {
-    private String skuCode;
     private String firstName;
     private String lastName;
-    private Date dateOfBirth;
+    private String email;
+    private String picture;
 }

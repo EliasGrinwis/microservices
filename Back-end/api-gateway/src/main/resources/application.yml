@@ -81,3 +81,11 @@ spring:
             - Method=GET
           filters:
             - SetPath=/api/customer
+        # POST CUSTOMER
+        - id: customer-service-create
+          uri: http://${CUSTOMER_SERVICE_BASEURL:localhost:8080}
+          predicates:
+            - Path=/customers
+            - Method=POST
+          filters:
+            - SetPath=/api/customer
