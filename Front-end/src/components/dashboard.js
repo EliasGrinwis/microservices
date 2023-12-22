@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import {Tab, Tabs, TabList, TabPanel} from "react-tabs";
 import ManageHotels from "./manage_hotels";
+import ManageCustomers from "./manage_customers";
 
 function Dashboard({userToken}) {
   const [tabIndex, setTabIndex] = useState(0);
@@ -8,13 +9,6 @@ function Dashboard({userToken}) {
   const handleTabChange = (index) => {
     setTabIndex(index);
   };
-
-  // Sample data for tables
-  const customersData = [
-    {id: 1, name: "John Doe", email: "john@example.com"},
-    {id: 2, name: "Jane Smith", email: "jane@example.com"},
-    // Add more data as needed
-  ];
 
   const roomsData = [
     {id: 1, roomNumber: 101, type: "Standard", price: 100},
@@ -58,32 +52,7 @@ function Dashboard({userToken}) {
           </TabList>
 
           <TabPanel>
-            <h2>Customer Management</h2>
-            <table>
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>Name</th>
-                  <th>Email</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                {customersData.map((row) => (
-                  <tr key={row.id}>
-                    <td>{row.id}</td>
-                    <td>{row.name}</td>
-                    <td>{row.email}</td>
-                    <td>
-                      <button onClick={() => handleEdit(row)}>Edit</button>
-                      <button onClick={() => handleDelete(row.id)}>
-                        Delete
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+            <ManageCustomers userToken={userToken} />
           </TabPanel>
 
           <TabPanel>

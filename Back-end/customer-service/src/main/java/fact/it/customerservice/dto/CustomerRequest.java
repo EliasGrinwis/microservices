@@ -12,6 +12,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CustomerRequest {
+    private String id;
     private String firstName;
     private String lastName;
     private String email;

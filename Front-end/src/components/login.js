@@ -1,18 +1,23 @@
 import React, {useEffect, useCallback} from "react";
 import {useNavigate} from "react-router-dom";
 import {jwtDecode} from "jwt-decode";
+import CustomerApi from "../apis/customer_api";
 
 function Login({setIsLoggedIn, setUserToken, setUserProfile}) {
   const google = window.google;
   const navigate = useNavigate();
 
   const handleCallbackResponse = useCallback(
-    (response) => {
+    async (response) => {
       let userObject = jwtDecode(response.credential);
 
       setIsLoggedIn(true);
       setUserToken(response.credential);
       setUserProfile(userObject);
+
+      console.log(response.credential);
+
+      await CustomerApi.createCustomer(userObject, response.credential);
 
       console.log(userObject);
 

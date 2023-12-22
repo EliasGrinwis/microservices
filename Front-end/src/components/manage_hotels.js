@@ -52,6 +52,8 @@ function ManageHotels({userToken}) {
       // Create a new hotel object with the image URL
       const hotelWithImage = {...newHotelData, image: imageUrl};
 
+      console.log(hotelWithImage);
+
       // Send a request to create a new hotel with the updated data
       await HotelApi.createHotel(hotelWithImage, userToken);
 

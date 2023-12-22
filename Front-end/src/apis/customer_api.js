@@ -3,35 +3,50 @@ import configData from "../config/api.json";
 
 const customerBaseUrl = configData.api + "customers";
 
-class HotelApi {
-  static getHotels() {
-    return axios.get(hotelBaseUrl);
-  }
-
-  static createHotel(hotel, userToken) {
+class CustomerApi {
+  static getCustomers(userToken) {
     const config = {
       headers: {
         Authorization: `Bearer ${userToken}`,
         "Content-Type": "application/json",
       },
     };
-    return axios.post(hotelBaseUrl, hotel, config);
+
+    return axios.get(customerBaseUrl, config);
   }
 
-  static deleteHotel(hotelId, userToken) {
+  static async createCustomer(customer, userToken) {
+    let firstName = customer.given_name;
+    let lastName = customer.family_name;
+    let email = customer.email;
+    let picture = customer.picture;
+
+    const customerData = {
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      picture: picture,
+      // Add other needed properties from the customer object
+    };
+
+    console.log(customerData);
+
     const config = {
       headers: {
         Authorization: `Bearer ${userToken}`,
         "Content-Type": "application/json",
       },
     };
-    return axios.delete(`${hotelBaseUrl}/${hotelId}`, config);
-  }
 
-  // Coming soon
-  //   static getHotel(hotel) {
-  //     return axios.get(hotelBaseUrl)
-  //   }
+    try {
+      const response = await axios.post(customerBaseUrl, customerData, config);
+      console.log("Response Status:", response.status);
+      return response;
+    } catch (error) {
+      console.error("Error:", error);
+      throw error; // You can handle the error further or rethrow it
+    }
+  }
 }
 
-export default HotelApi;
+export default CustomerApi;
