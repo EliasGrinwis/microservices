@@ -1,6 +1,8 @@
 import requests
 
+# gateway_url = "https://api-gateway-eliasgrinwis.cloud.okteto.net/hotels"
 gateway_url = "http://localhost:8083/hotels"
+
 num_requests = 1000
 
 for _ in range(num_requests):

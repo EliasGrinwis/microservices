@@ -38,7 +38,10 @@ public class SecurityConfig {
         return http.build();
     }
 
-
+    @Bean
+    public KeyResolver keyResolver() {
+        return exchange -> Mono.just(exchange.getRequest().getRemoteAddress().getAddress().getHostAddress());
+    }
 
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
