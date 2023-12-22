@@ -27,6 +27,6 @@ public class CustomerController {
     public String createCustomer(@RequestBody CustomerRequest customerRequest) {
         boolean result = customerService.createCustomer(customerRequest);
 
-        return (result ? "Customer created successfully" : "Customer failed.");
+        return (result ? "Customer created successfully" : "Customer failed. User has already an account");
     }
 }
