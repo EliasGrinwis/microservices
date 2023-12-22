@@ -40,16 +40,17 @@ public class SecurityConfig {
         return http.build();
     }
 
-    @Bean
-    public KeyResolver keyResolver() {
-        return exchange -> Mono.just(Objects.requireNonNull(exchange.getRequest().getRemoteAddress()).getAddress().getHostAddress());
-    }
+//    @Bean
+//    public KeyResolver keyResolver() {
+//        return exchange -> Mono.just(Objects.requireNonNull(exchange.getRequest().getRemoteAddress()).getAddress().getHostAddress());
+//    }
 
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
 //        configuration.addAllowedOrigin("http://localhost:3000"); // Add your frontend origin
         configuration.addAllowedOrigin("https://microservices-402412.web.app/");
+        configuration.addAllowedOrigin("https://microservices-402412.web.app");
         configuration.addAllowedMethod("*");
         configuration.addAllowedHeader("*");
         configuration.setAllowCredentials(true);
