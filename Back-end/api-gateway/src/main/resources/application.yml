@@ -32,11 +32,11 @@ spring:
             - Method=GET
           filters:
             - SetPath=/api/hotel
-#            - name: RequestRateLimiter
-#              args:
-#                redis-rate-limiter.replenishRate: 1
-#                redis-rate-limiter.burstCapacity: 1
-#                redis-rate-limiter.requestedToken: 1
+            - name: RequestRateLimiter
+              args:
+                redis-rate-limiter.replenishRate: 1
+                redis-rate-limiter.burstCapacity: 1
+                redis-rate-limiter.requestedToken: 1
 
         # POST HOTEL
         - id: hotel-service-create
