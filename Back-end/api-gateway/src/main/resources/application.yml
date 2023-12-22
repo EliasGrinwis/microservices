@@ -9,6 +9,9 @@ logging:
     reactor.netty: TRACE
 
 spring:
+  redis:
+    host: ${REDIS_HOST:localhost}
+    port: 6379
   security:
     oauth2:
       client:
@@ -32,6 +35,11 @@ spring:
             - Method=GET
           filters:
             - SetPath=/api/hotel
+            - name: RequestRateLimiter
+              args:
+                redis-rate-limiter.replenishRate: 5
+                redis-rate-limiter.burstCapacity: 20
+                redis-rate-limiter.requestedToken: 1
 
         # POST HOTEL
         - id: hotel-service-create

@@ -1,4 +1,9 @@
 services:
+  redis:
+    image: redis:latest
+    ports:
+      - 6379:6379
+
   mongo-customers:
     image: mongo:latest
     ports:
@@ -82,6 +87,7 @@ services:
       CUSTOMER_SERVICE_BASEURL: customer-service:8080
       HOTEL_SERVICE_BASEURL: hotel-service:8081
       ROOM_SERVICE_BASEURL: room-service:8082
+      REDIS_HOST: redis
 
 volumes:
   mongodb_customer_data:
