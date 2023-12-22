@@ -47,6 +47,8 @@ public class CustomerService {
         customer.setEmail(customerRequest.getEmail());
         customer.setPicture(customerRequest.getPicture());
 
+        customerRepository.save(customer);
+
         return true;
     }
 
