@@ -49,8 +49,7 @@ public class SecurityConfig {
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
 //        configuration.addAllowedOrigin("http://localhost:3000"); // Add your frontend origin
-        configuration.addAllowedOrigin("https://microservices-402412.web.app/");
-        configuration.addAllowedOrigin("https://microservices-402412.web.app");
+        configuration.addAllowedOrigin("*");
         configuration.addAllowedMethod("*");
         configuration.addAllowedHeader("*");
         configuration.setAllowCredentials(true);
