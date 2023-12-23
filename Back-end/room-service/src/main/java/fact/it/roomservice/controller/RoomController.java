@@ -1,5 +1,6 @@
 package fact.it.roomservice.controller;
 
+import fact.it.roomservice.dto.RoomRequest;
 import fact.it.roomservice.dto.RoomResponse;
 import fact.it.roomservice.service.RoomService;
 import lombok.RequiredArgsConstructor;
@@ -23,7 +24,15 @@ public class RoomController {
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public RoomResponse getRoom(@PathVariable Long id) {
+    public RoomResponse getRoom(@PathVariable("id") Long id) {
         return roomService.getRoom(id);
+    }
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.OK)
+    public String createRoom(@RequestBody RoomRequest roomRequest) {
+        boolean result = roomService.createRoom(roomRequest);
+
+        return (result ? "Room created successfully" : "Room failed. Name already in use.");
     }
 }

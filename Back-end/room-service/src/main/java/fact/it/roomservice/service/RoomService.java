@@ -1,5 +1,6 @@
 package fact.it.roomservice.service;
 
+import fact.it.roomservice.dto.RoomRequest;
 import fact.it.roomservice.dto.RoomResponse;
 import fact.it.roomservice.model.Room;
 import fact.it.roomservice.repository.RoomRepository;
@@ -61,5 +62,18 @@ public class RoomService {
         } else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Room not found");
         }
+    }
+
+    public boolean createRoom(RoomRequest roomRequest) {
+        Room room = new Room();
+
+        room.setPricePerDay(roomRequest.getPricePerDay());
+        room.setAmountOfBeds(roomRequest.getAmountOfBeds());
+        room.setRoomSize(roomRequest.getRoomSize());
+        room.setKitchen(roomRequest.isKitchen());
+        room.setTelevision(roomRequest.isTelevision());
+
+        roomRepository.save(room);
+        return true;
     }
 }

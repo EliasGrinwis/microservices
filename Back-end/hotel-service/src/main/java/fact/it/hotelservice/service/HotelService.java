@@ -8,7 +8,9 @@ import jakarta.annotation.PostConstruct;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Arrays;
 import java.util.List;
@@ -60,7 +62,23 @@ public class HotelService {
                 .collect(Collectors.toList());
     }
 
+    public HotelResponse getHotel(Long hotelId) {
+        Optional<Hotel> hotelOptional = hotelRepository.findById(hotelId);
 
+        if (hotelOptional.isPresent()) {
+            Hotel hotel = hotelOptional.get();
+            return new HotelResponse(hotel.getId(),
+                    hotel.getName(),
+                    hotel.getDescription(),
+                    hotel.getCity(),
+                    hotel.getAddress(),
+                    hotel.getImage(),
+                    hotel.getRoomIds()
+            );
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Hotel not found");
+        }
+    }
 
     public boolean createHotel(HotelRequest hotelRequest) {
         Hotel hotel = new Hotel();

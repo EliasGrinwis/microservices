@@ -22,7 +22,7 @@ function ManageHotels({userToken}) {
       setLoading(true);
       try {
         const result = await HotelApi.getHotels();
-        setHotels(result.data);
+        setHotels(result);
       } catch (error) {
         setError(true);
       }
@@ -51,8 +51,6 @@ function ManageHotels({userToken}) {
 
       // Create a new hotel object with the image URL
       const hotelWithImage = {...newHotelData, image: imageUrl};
-
-      console.log(hotelWithImage);
 
       // Send a request to create a new hotel with the updated data
       await HotelApi.createHotel(hotelWithImage, userToken);
@@ -223,6 +221,7 @@ function ManageHotels({userToken}) {
           <tr className="bg-gray-100">
             <th className="border p-2 text-left">Hotel Name</th>
             <th className="border p-2 text-left">Location</th>
+            <th className="border p-2 text-left">Amount of rooms</th>
             <th className="border p-2 text-left">Actions</th>
           </tr>
         </thead>
@@ -231,6 +230,7 @@ function ManageHotels({userToken}) {
             <tr key={hotel.id}>
               <td className="border p-2">{hotel.name}</td>
               <td className="border p-2">{hotel.address}</td>
+              <td className="border p-2"> {Object.keys(hotel.rooms).length}</td>
               <td className="border p-2">
                 <button className="bg-blue-500 text-white px-4 py-2 rounded mr-2">
                   Edit

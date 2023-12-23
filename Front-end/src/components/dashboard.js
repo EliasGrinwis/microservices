@@ -2,28 +2,13 @@ import React, {useState} from "react";
 import {Tab, Tabs, TabList, TabPanel} from "react-tabs";
 import ManageHotels from "./manage_hotels";
 import ManageCustomers from "./manage_customers";
+import ManageRooms from "./manage_rooms";
 
 function Dashboard({userToken}) {
   const [tabIndex, setTabIndex] = useState(0);
 
   const handleTabChange = (index) => {
     setTabIndex(index);
-  };
-
-  const roomsData = [
-    {id: 1, roomNumber: 101, type: "Standard", price: 100},
-    {id: 2, roomNumber: 201, type: "Suite", price: 200},
-    // Add more data as needed
-  ];
-
-  const handleEdit = (row) => {
-    // Add your edit logic here
-    console.log("Edit row:", row);
-  };
-
-  const handleDelete = (id) => {
-    // Add your delete logic here
-    console.log("Delete row with ID:", id);
   };
 
   return (
@@ -60,34 +45,7 @@ function Dashboard({userToken}) {
           </TabPanel>
 
           <TabPanel>
-            <h2>Room Management</h2>
-            <table>
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>Room Number</th>
-                  <th>Type</th>
-                  <th>Price</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                {roomsData.map((row) => (
-                  <tr key={row.id}>
-                    <td>{row.id}</td>
-                    <td>{row.roomNumber}</td>
-                    <td>{row.type}</td>
-                    <td>{row.price}</td>
-                    <td>
-                      <button onClick={() => handleEdit(row)}>Edit</button>
-                      <button onClick={() => handleDelete(row.id)}>
-                        Delete
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+            <ManageRooms userToken={userToken} />
           </TabPanel>
         </Tabs>
       </div>

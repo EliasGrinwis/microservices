@@ -38,6 +38,15 @@ spring:
                 redis-rate-limiter.burstCapacity: 40
                 redis-rate-limiter.requestedToken: 1
 
+        # GET Hotel
+        - id: hotel-service
+          uri: http://${HOTEL_SERVICE_BASEURL:localhost:8081}
+          predicates:
+            - Path=/hotels/{id}
+            - Method=GET
+          filters:
+            - SetPath=/api/hotel/{id}
+
         # POST HOTEL
         - id: hotel-service-create
           uri: http://${HOTEL_SERVICE_BASEURL:localhost:8081}
@@ -73,6 +82,15 @@ spring:
             - Method=GET
           filters:
             - SetPath=/api/room
+
+        # GET ROOMS
+        - id: room-service
+          uri: http://${ROOM_SERVICE_BASEURL:localhost:8082}
+          predicates:
+            - Path=/rooms/{id}
+            - Method=GET
+          filters:
+            - SetPath=/api/room/{id}
 
         # GET CUSTOMERS
         - id: customer-service-all
