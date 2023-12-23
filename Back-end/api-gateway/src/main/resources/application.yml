@@ -9,9 +9,6 @@ logging:
     reactor.netty: TRACE
 
 spring:
-  redis:
-    port: 6379
-    host: redis
   security:
     oauth2:
       client:
