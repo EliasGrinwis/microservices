@@ -9,6 +9,9 @@ logging:
     reactor.netty: TRACE
 
 spring:
+  redis:
+    port: 6379
+    host: redis
   security:
     oauth2:
       client:
@@ -22,10 +25,6 @@ spring:
           issuer-uri: https://accounts.google.com
           jwk-set-uri: https://www.googleapis.com/oauth2/v3/certs
   cloud:
-    redis:
-      host: ${SPRING_REDIS_HOST}
-      port: ${SPRING_REDIS_PORT}
-
     gateway:
       routes:
         # GET HOTELS
