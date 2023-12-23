@@ -78,6 +78,19 @@ class HotelApi {
     return axios.post(hotelBaseUrl, hotel, config);
   }
 
+  static updateHotel(hotel, userToken) {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userToken}`,
+        "Content-Type": "application/json",
+      },
+    };
+
+    const url = `${hotelBaseUrl}/${hotel.id}`;
+
+    return axios.put(hotel, url, config);
+  }
+
   static deleteHotel(hotelId, userToken) {
     console.log(hotelId);
     const config = {

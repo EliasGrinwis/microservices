@@ -64,7 +64,7 @@ public class RoomService {
         }
     }
 
-    public boolean createRoom(RoomRequest roomRequest) {
+    public long createRoom(RoomRequest roomRequest) {
         Room room = new Room();
 
         room.setPricePerDay(roomRequest.getPricePerDay());
@@ -74,6 +74,6 @@ public class RoomService {
         room.setTelevision(roomRequest.isTelevision());
 
         roomRepository.save(room);
-        return true;
+        return room.getId();
     }
 }

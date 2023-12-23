@@ -92,6 +92,15 @@ spring:
           filters:
             - SetPath=/api/room/{id}
 
+        # POST ROOM
+        - id: room-service-create
+          uri: http://${ROOM_SERVICE_BASEURL:localhost:8082}
+          predicates:
+            - Path=/rooms
+            - Method=POST
+          filters:
+            - SetPath=/api/room
+
         # GET CUSTOMERS
         - id: customer-service-all
           uri: http://${CUSTOMER_SERVICE_BASEURL:localhost:8080}

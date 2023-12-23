@@ -22,5 +22,4 @@ public class Room {
     private boolean isKitchen;
     private boolean isTelevision;
 
-    private Long hotelId;
 }

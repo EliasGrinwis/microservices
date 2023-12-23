@@ -11,6 +11,16 @@ class RoomApi {
   static getRoom(roomId) {
     return axios.get(`${roomBaseUrl}/${roomId}`);
   }
+
+  static createRoom(room, userToken) {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userToken}`,
+        "Content-Type": "application/json",
+      },
+    };
+    return axios.post(roomBaseUrl, room, config);
+  }
 }
 
 export default RoomApi;

@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from "react";
-import CustomerApi from "../apis/customer_api";
 import Loading from "../components/loading";
 import Error from "../components/error";
 import RoomApi from "../apis/room_api";
@@ -12,13 +11,16 @@ function ManageRooms({userToken}) {
   const [error, setError] = useState(false);
 
   const [newRoomData, setNewRoomData] = useState({
-    pricePerDay: null,
-    amountOfBeds: null,
-    roomSize: null,
-    isKitchen: null,
-    isTelevision: null,
-    hotelId: null,
+    pricePerDay: 0,
+    amountOfBeds: 0,
+    roomSize: 0,
+    isKitchen: false,
+    isTelevision: false,
   });
+  const [hotel, setHotel] = useState({
+    hotelId: 0,
+  });
+
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
 
   useEffect(() => {
@@ -49,6 +51,26 @@ function ManageRooms({userToken}) {
 
   const handleCreateRoom = async () => {
     try {
+      //   console.log(newRoomData);
+      // Create a new room
+      const createdRoomResponse = await RoomApi.createRoom(
+        newRoomData,
+        userToken
+      );
+      const createdRoomId = createdRoomResponse.data;
+      console.log(createdRoomId);
+      // Get the current hotel data
+      const hotelResponse = await HotelApi.getHotel(hotel.hotelId);
+      const currentHotel = hotelResponse.data;
+
+      // Add the new room's ID to the hotel's roomIds array
+      currentHotel.roomIds.push(createdRoomId);
+
+      console.log(currentHotel);
+
+      // Update the hotel with the modified data
+      //await HotelApi.updateHotel(currentHotel, userToken);
+
       closeCreateModal();
     } catch (error) {
       console.error("Error creating room:", error);
@@ -171,20 +193,18 @@ function ManageRooms({userToken}) {
 
             <div className="mb-2">
               <label
-                htmlFor="hotelId"
+                htmlFor="hotel"
                 className="block text-sm font-medium text-gray-700">
                 Which hotel belongs to this room?
               </label>
               <select
                 id="hotelId"
-                value={newRoomData.hotelId}
-                onChange={(e) =>
-                  setNewRoomData({...newRoomData, isTelevision: e.target.value})
-                }
+                value={hotel.hotelId}
+                onChange={(e) => setHotel({...hotel, hotelId: e.target.value})}
                 className="mt-1 p-2 border w-full">
                 <option value="">Select an option</option>
                 {hotels.map((hotel) => (
-                  <option key={hotel.id} value={hotel.name}>
+                  <option key={hotel.id} value={hotel.id}>
                     {hotel.name}
                   </option>
                 ))}

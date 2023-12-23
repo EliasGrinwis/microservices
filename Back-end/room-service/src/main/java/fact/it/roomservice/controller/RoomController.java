@@ -30,9 +30,7 @@ public class RoomController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.OK)
-    public String createRoom(@RequestBody RoomRequest roomRequest) {
-        boolean result = roomService.createRoom(roomRequest);
-
-        return (result ? "Room created successfully" : "Room failed. Name already in use.");
+    public long createRoom(@RequestBody RoomRequest roomRequest) {
+        return roomService.createRoom(roomRequest);
     }
 }

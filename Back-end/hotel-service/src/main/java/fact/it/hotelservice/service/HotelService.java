@@ -103,7 +103,11 @@ public class HotelService {
             Hotel existingHotel = existingHotelOptional.get();
 
             existingHotel.setName(updatedHotel.getName());
+            existingHotel.setDescription(updatedHotel.getDescription());
             existingHotel.setAddress(updatedHotel.getAddress());
+            existingHotel.setCity(updatedHotel.getCity());
+            existingHotel.setImage(updatedHotel.getImage());
+            existingHotel.setRoomIds(updatedHotel.getRoomIds());
 
             return hotelRepository.save(existingHotel);
         } else {
