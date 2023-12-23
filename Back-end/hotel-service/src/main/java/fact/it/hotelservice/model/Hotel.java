@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
 @Table(name = "hotels")
 @Getter
@@ -21,4 +23,7 @@ public class Hotel {
     private String city;
     private String address;
     private String image;
+
+    @ElementCollection
+    private List<Long> roomIds;
 }

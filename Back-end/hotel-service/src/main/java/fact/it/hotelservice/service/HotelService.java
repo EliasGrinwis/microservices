@@ -52,7 +52,8 @@ public class HotelService {
                         hotel.getDescription(),
                         hotel.getCity(),
                         hotel.getAddress(),
-                        hotel.getImage()
+                        hotel.getImage(),
+                        hotel.getRoomIds()
 
                 ))
                 .collect(Collectors.toList());

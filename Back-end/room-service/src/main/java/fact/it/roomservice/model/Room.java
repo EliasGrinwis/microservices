@@ -21,4 +21,6 @@ public class Room {
     private int roomSize;
     private boolean isKitchen;
     private boolean isTelevision;
+
+    private Long hotelId;
 }

@@ -28,7 +28,6 @@ public class RoomService {
             room.setKitchen(false);
             room.setTelevision(true);
 
-
             roomRepository.save(room);
         }
     }
@@ -38,6 +37,7 @@ public class RoomService {
 
         return rooms.stream()
                 .map(room -> new RoomResponse(
+                        room.getId(),
                         room.getPricePerDay(),
                         room.getAmountOfBeds(),
                         room.getRoomSize(),

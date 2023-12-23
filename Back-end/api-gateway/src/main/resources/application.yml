@@ -73,6 +73,7 @@ spring:
             - Method=GET
           filters:
             - SetPath=/api/room
+
         # GET CUSTOMERS
         - id: customer-service-all
           uri: http://${CUSTOMER_SERVICE_BASEURL:localhost:8080}
@@ -81,6 +82,7 @@ spring:
             - Method=GET
           filters:
             - SetPath=/api/customer
+
         # POST CUSTOMER
         - id: customer-service-create
           uri: http://${CUSTOMER_SERVICE_BASEURL:localhost:8080}
