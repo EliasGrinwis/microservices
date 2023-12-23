@@ -88,7 +88,7 @@ class HotelApi {
 
     const url = `${hotelBaseUrl}/${hotel.id}`;
 
-    return axios.put(hotel, url, config);
+    return axios.put(url, hotel, config);
   }
 
   static deleteHotel(hotelId, userToken) {

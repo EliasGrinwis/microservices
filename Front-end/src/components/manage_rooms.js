@@ -51,14 +51,13 @@ function ManageRooms({userToken}) {
 
   const handleCreateRoom = async () => {
     try {
-      //   console.log(newRoomData);
       // Create a new room
       const createdRoomResponse = await RoomApi.createRoom(
         newRoomData,
         userToken
       );
       const createdRoomId = createdRoomResponse.data;
-      console.log(createdRoomId);
+
       // Get the current hotel data
       const hotelResponse = await HotelApi.getHotel(hotel.hotelId);
       const currentHotel = hotelResponse.data;
@@ -66,10 +65,8 @@ function ManageRooms({userToken}) {
       // Add the new room's ID to the hotel's roomIds array
       currentHotel.roomIds.push(createdRoomId);
 
-      console.log(currentHotel);
-
       // Update the hotel with the modified data
-      //await HotelApi.updateHotel(currentHotel, userToken);
+      await HotelApi.updateHotel(currentHotel, userToken);
 
       closeCreateModal();
     } catch (error) {
