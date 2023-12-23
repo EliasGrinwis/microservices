@@ -1,13 +1,17 @@
-import time
-import requests
+import asyncio
+import aiohttp
 
-#gateway_url = "https://api-gateway-eliasgrinwis.cloud.okteto.net/hotels"
 gateway_url = "http://localhost:8083/hotels"
-
 num_requests = 1000
 
-for _ in range(num_requests):
-    response = requests.get(gateway_url)
-    
-    # Print the response status
-    print(f"Status Code: {response.status_code}")
+async def send_request(session, url):
+ async with session.get(url) as response:
+     return response.status
+
+async def main():
+ async with aiohttp.ClientSession() as session:
+     for _ in range(num_requests):
+         status = await send_request(session, gateway_url)
+         print(f"Status: {status}")
+
+asyncio.run(main())

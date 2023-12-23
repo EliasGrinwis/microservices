@@ -34,8 +34,8 @@ spring:
             - SetPath=/api/hotel
             - name: RequestRateLimiter
               args:
-                redis-rate-limiter.replenishRate: 20
-                redis-rate-limiter.burstCapacity: 40
+                redis-rate-limiter.replenishRate: 2
+                redis-rate-limiter.burstCapacity: 7
                 redis-rate-limiter.requestedToken: 1
 
         # GET Hotel
