@@ -4,8 +4,19 @@ import configData from "../config/api.json";
 const hotelBaseUrl = configData.api + "hotels";
 
 class HotelApi {
-  static getHotels() {
-    return axios.get(hotelBaseUrl);
+  static async getHotels() {
+    return axios
+      .get(hotelBaseUrl)
+      .then((response) => {
+        for (let data of response.data) {
+          console.log(data.roomIds);
+        }
+        return response;
+      })
+      .catch((error) => {
+        console.error("Error fetching hotels:", error);
+        throw error; // Rethrow the error to propagate it
+      });
   }
 
   static createHotel(hotel, userToken) {

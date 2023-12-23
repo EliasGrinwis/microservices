@@ -4,10 +4,7 @@ import fact.it.roomservice.dto.RoomResponse;
 import fact.it.roomservice.service.RoomService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,5 +19,11 @@ public class RoomController {
     @ResponseStatus(HttpStatus.OK)
     public List<RoomResponse> getAllRooms() {
         return roomService.getAllRooms();
+    }
+
+    @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public RoomResponse getRoom(@PathVariable Long id) {
+        return roomService.getRoom(id);
     }
 }

@@ -6,9 +6,13 @@ import fact.it.roomservice.repository.RoomRepository;
 import jakarta.annotation.PostConstruct;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -16,6 +20,7 @@ import java.util.stream.Collectors;
 @Transactional
 public class RoomService {
 
+    @Autowired
     private final RoomRepository roomRepository;
 
     @PostConstruct
@@ -45,5 +50,16 @@ public class RoomService {
                         room.isTelevision()
                 ))
                 .collect(Collectors.toList());
+    }
+
+    public RoomResponse getRoom(Long roomId) {
+        Optional<Room> roomOptional = roomRepository.findById(roomId);
+
+        if (roomOptional.isPresent()) {
+            Room room = roomOptional.get();
+            return new RoomResponse(room.getId(), room.getPricePerDay(), room.getAmountOfBeds(), room.getRoomSize(), room.isKitchen(), room.isTelevision());
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Room not found");
+        }
     }
 }

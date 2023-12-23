@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -37,7 +38,7 @@ public class HotelService {
             hotel.setCity("Amsterdam");
             hotel.setAddress("Keizersgracht 123, 1015 CJ Amsterdam, Netherlands");
             hotel.setImage("https://firebasestorage.googleapis.com/v0/b/microservices-402412.appspot.com/o/images%2Friviera.jpg?alt=media&token=29191ae6-0956-472d-8dfe-72f6cad12720");
-
+            hotel.setRoomIds(List.of(1L));
             hotelRepository.save(hotel);
         }
     }
