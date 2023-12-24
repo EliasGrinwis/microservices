@@ -32,11 +32,11 @@ spring:
             - Method=GET
           filters:
             - SetPath=/api/hotel
-            - name: RequestRateLimiter
-              args:
-                redis-rate-limiter.replenishRate: 2
-                redis-rate-limiter.burstCapacity: 7
-                redis-rate-limiter.requestedToken: 1
+#            - name: RequestRateLimiter
+#              args:
+#                redis-rate-limiter.replenishRate: 2
+#                redis-rate-limiter.burstCapacity: 7
+#                redis-rate-limiter.requestedToken: 1
 
         # GET Hotel
         - id: hotel-service
@@ -83,7 +83,7 @@ spring:
           filters:
             - SetPath=/api/room
 
-        # GET ROOMS
+        # GET ROOM
         - id: room-service
           uri: http://${ROOM_SERVICE_BASEURL:localhost:8082}
           predicates:

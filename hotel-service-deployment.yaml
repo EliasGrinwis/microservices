@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f docker-compose.yml
+    kompose.version: 1.31.2 (a92241f79)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: hotel-service
+  name: hotel-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: hotel-service
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f docker-compose.yml
+        kompose.version: 1.31.2 (a92241f79)
+      creationTimestamp: null
+      labels:
+        io.kompose.network/project-default: "true"
+        io.kompose.service: hotel-service
+    spec:
+      containers:
+        - env:
+            - name: CUSTOMER_SERVICE_BASEURL
+              value: customer-service:8080
+            - name: MYSQL_DB_HOST
+              value: mysql-hotel
+            - name: MYSQL_DB_PASSWORD
+              value: abc123
+            - name: MYSQL_DB_PORT
+              value: "3306"
+            - name: MYSQL_DB_USERNAME
+              value: root
+            - name: ROOM_INFO_SERVICE_BASEURL
+              value: room-service:8082
+          image: eliasgps/hotel-service
+          name: hotel-service
+          ports:
+            - containerPort: 8081
+              hostPort: 8081
+              protocol: TCP
+          resources: {}
+      restartPolicy: Always
+status: {}

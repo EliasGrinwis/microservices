@@ -73,7 +73,7 @@ public class RoomService {
         room.setKitchen(roomRequest.isKitchen());
         room.setTelevision(roomRequest.isTelevision());
 
-        roomRepository.save(room);
-        return room.getId();
+        Room savedRoom = roomRepository.save(room);
+        return savedRoom.getId();
     }
 }
