@@ -1,0 +1,95 @@
+services:
+  redis:
+    image: redis:latest
+    ports:
+      - 6379:6379
+
+  mongo-customers:
+    image: mongo:latest
+    ports:
+      - 27017:27017
+    volumes:
+      - mongodb_customer_data:/data/db
+
+  mysql-hotel:
+    image: mysql:latest
+    ports:
+      - 3306:3306
+    volumes:
+      - mysql_hotel_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: abc123
+
+  mysql-room:
+    image: mysql:latest
+    ports:
+      - 3307:3306
+    volumes:
+      - mysql_room_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: abc123
+
+  customer-service:
+    depends_on:
+      - mongo-customers
+    image: eliasgps/customer-service
+    ports:
+      - 8080:8080
+    links:
+      - mongo-customers
+    environment:
+      MONGODB_PORT: 27017
+      MONGODB_HOST: mongo-customers
+
+  room-service:
+    depends_on:
+      - mysql-room
+    image: eliasgps/room-service
+    ports:
+      - 8082:8082
+    links:
+      - mysql-room
+    environment:
+      MYSQL_DB_USERNAME: root
+      MYSQL_DB_PASSWORD: abc123
+      MYSQL_DB_HOST: mysql-room
+      MYSQL_DB_PORT: 3306
+
+  hotel-service:
+    depends_on:
+      - customer-service
+      - room-service
+    image: eliasgps/hotel-service
+    ports:
+      - 8081:8081
+    links:
+      - customer-service
+      - room-service
+    environment:
+      CUSTOMER_SERVICE_BASEURL: customer-service:8080
+      ROOM_INFO_SERVICE_BASEURL: room-service:8082
+      MYSQL_DB_USERNAME: root
+      MYSQL_DB_PASSWORD: abc123
+      MYSQL_DB_HOST: mysql-hotel
+      MYSQL_DB_PORT: 3306
+
+  api-gateway:
+    depends_on:
+      - customer-service
+      - hotel-service
+      - redis
+    image: eliasgps/ede-api-gateway
+    ports:
+      - 8083:8083
+    links:
+      - customer-service
+      - hotel-service
+    environment:
+      CUSTOMER_SERVICE_BASEURL: customer-service:8080
+      HOTEL_SERVICE_BASEURL: hotel-service:8081
+      ROOM_SERVICE_BASEURL: room-service:8082
+
+volumes:
+  mongodb_customer_data:
+  mysql_room_data:
+  mysql_hotel_data:
