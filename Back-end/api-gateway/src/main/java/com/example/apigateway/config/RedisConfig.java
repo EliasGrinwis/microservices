@@ -14,15 +14,15 @@ public class RedisConfig {
     @Bean
     public RedisStandaloneConfiguration standaloneConfiguration() {
         return new RedisStandaloneConfiguration("redis", 6379);
-   }
+    }
 
-   @Bean
-   public LettuceConnectionFactory lettuceConnectionFactory() {
+    @Bean
+    public LettuceConnectionFactory lettuceConnectionFactory() {
        return new LettuceConnectionFactory(standaloneConfiguration());
     }
 
-  @Bean
-   public RedisTemplate<String, Object> redisTemplate() {
+    @Bean
+    public RedisTemplate<String, Object> redisTemplate() {
        RedisTemplate<String, Object> template = new RedisTemplate<>();
        template.setConnectionFactory(lettuceConnectionFactory());
       return template;
