@@ -15,6 +15,8 @@ function Login({setIsLoggedIn, setUserToken, setUserProfile}) {
       setUserToken(response.credential);
       setUserProfile(userObject);
 
+      console.log(userObject);
+
       console.log(response.credential);
 
       await CustomerApi.createCustomer(userObject, response.credential);
