@@ -45,6 +45,8 @@ To orchestrate and manage interactions between these microservices, I implemente
 
 API Gateway Entry Point: `https://api-gateway-eliasgrinwis.cloud.okteto.net`
 
+All endpoints are equipped with a rate limiter to ensure fair usage and prevent abuse. This mechanism helps maintain the stability and performance of the API by restricting the number of requests a user or client can make within a specified time frame. Please adhere to the defined rate limits to optimize your experience with the API.
+
 ### Hotel Service 🏢
 
 | Endpoint                        | Method | Description                                   | Auth Required | Image                                       |
