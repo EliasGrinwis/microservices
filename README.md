@@ -54,6 +54,7 @@ To orchestrate and manage interactions between these microservices, I implemente
 | `/hotels/{id}`         | GET    | Retrieve information about a specific hotel. | <img src="https://firebasestorage.googleapis.com/v0/b/microservices-402412.appspot.com/o/specific_hotel.PNG?alt=media&token=ffd92109-cc16-4184-a28a-19baf1522f05" width="200"> |
 | `/hotels`              | POST   | Create an hotel. | <img src="https://firebasestorage.googleapis.com/v0/b/microservices-402412.appspot.com/o/hotel_post.PNG?alt=media&token=a33f9aa3-64d3-4405-9075-6b8c2c55e923" width="200"> |
 | `/hotels/{id}`         | PUT    | Update an hotel. | <img src="https://firebasestorage.googleapis.com/v0/b/microservices-402412.appspot.com/o/update_hotel.PNG?alt=media&token=4b3cf3a4-959b-40bc-a401-74ae27f66882" width="200"> |
+| `/hotels/{id}`         | DELETE    | Delete an hotel. | <img src="https://firebasestorage.googleapis.com/v0/b/microservices-402412.appspot.com/o/delete_hotel.PNG?alt=media&token=d1aa16d7-1ffb-41a1-ad15-14c4b649a707" width="200"> |
 
 ### Room Service
 
