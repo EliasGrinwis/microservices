@@ -42,7 +42,7 @@ The `customer-service` microservice is the primary interaction point for custome
 To orchestrate and manage interactions between these microservices, I implemented an API Gateway 🌐. This gateway acts as a single entry point for clients and handles requests efficiently by routing them to the respective microservices.
 
 
-### Endpoints 🛤️
+## Endpoints 🛤️
 
 #### 1. **Get Hotel Information**
    - **Endpoint:** `/hotel/{hotelId}`
