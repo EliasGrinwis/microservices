@@ -66,6 +66,8 @@ To orchestrate and manage interactions between these microservices, I implemente
 
 ### Customer Service
 
-| Endpoint                  | Method | Description                         | Image                                      |
-| ------------------------- | ------ | ----------------------------------- | ------------------------------------------- |
-| `/customer/register`      | POST   | Register a new customer. 
+| Endpoint                  | Method | Description                                      | Image                                      |
+| ------------------------- | ------ | ------------------------------------------------ | ------------------------------------------- |
+| `/customers`              | GET    | Retrieve information about all the customers.    | <img src="https://firebasestorage.googleapis.com/v0/b/microservices-402412.appspot.com/o/customers.PNG?alt=media&token=d4b5bcae-e6e2-4903-8add-718684beee82" width="200"> |
+| `/customers`              | POST   | Create a customer.                               | <img src="https://firebasestorage.googleapis.com/v0/b/microservices-402412.appspot.com/o/create_customer.PNG?alt=media&token=5f3e4c9f-64b2-4e25-b8d6-c3c08ff70d6f" width="200"> |
+
