@@ -58,10 +58,11 @@ To orchestrate and manage interactions between these microservices, I implemente
 
 ### Room Service
 
-| Endpoint              | Method | Description                             | Image                                |
-| --------------------- | ------ | --------------------------------------- | ------------------------------------- |
-| `/room/types`         | GET    | Get a list of available room types.     | <img src="YOUR_IMAGE_URL" width="200"> |
-| `/room/book`          | POST   | Book a room for a specified duration.   | <img src="YOUR_IMAGE_URL" width="200"> |
+| Endpoint              | Method | Description                                  | Image                                |
+| --------------------- | ------ | -------------------------------------------- | ------------------------------------- |
+| `/rooms`              | GET    | Retrieve information about all the rooms.    | <img src="https://firebasestorage.googleapis.com/v0/b/microservices-402412.appspot.com/o/rooms.PNG?alt=media&token=918bd9b8-4a77-4562-a7e8-8ef676d4a185" width="200"> |
+| `/rooms/{id}`         | GET    | Retrieve information about a specific room.  | <img src="https://firebasestorage.googleapis.com/v0/b/microservices-402412.appspot.com/o/room_specific.PNG?alt=media&token=65da167d-048e-4f11-885c-de138d45ec7f" width="200"> |
+| `/rooms`              | POST   | Create a room.                               | <img src="https://firebasestorage.googleapis.com/v0/b/microservices-402412.appspot.com/o/room_create.PNG?alt=media&token=37c184fd-d561-4688-b74e-1a677e7a3511" width="200"> |
 
 ### Customer Service
 
