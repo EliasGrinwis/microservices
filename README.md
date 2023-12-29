@@ -41,25 +41,24 @@ The `customer-service` microservice is the primary interaction point for custome
 
 To orchestrate and manage interactions between these microservices, I implemented an API Gateway 🌐. This gateway acts as a single entry point for clients and handles requests efficiently by routing them to the respective microservices.
 
-
 ## Endpoints 🛤️
 
 ### Hotel Service
 
-| Endpoint                        | Method | Description                                   | Example                                      |
+| Endpoint                        | Method | Description                                   | Image                                       |
 | ------------------------------- | ------ | --------------------------------------------- | -------------------------------------------- |
-| `/hotel/{hotelId}`              | GET    | Retrieve information about a specific hotel. | ![Get Hotel Information Example](/docs/images/get_hotel_info.png) |
+| `/hotel/{hotelId}`              | GET    | Retrieve information about a specific hotel. | ![Get Hotel Information](/docs/images/get_hotel_info.png) |
 
 ### Room Service
 
-| Endpoint              | Method | Description                             | Example                                |
-| --------------------- | ------ | --------------------------------------- | -------------------------------------- |
-| `/room/types`         | GET    | Get a list of available room types.     | ![Get Room Types Example](/docs/images/get_room_types.png) |
-| `/room/book`          | POST   | Book a room for a specified duration.   | ![Book a Room Example](/docs/images/book_room.png) |
+| Endpoint              | Method | Description                             | Image                                |
+| --------------------- | ------ | --------------------------------------- | ------------------------------------- |
+| `/room/types`         | GET    | Get a list of available room types.     | ![Get Room Types](/docs/images/get_room_types.png) |
+| `/room/book`          | POST   | Book a room for a specified duration.   | ![Book a Room](/docs/images/book_room.png) |
 
 ### Customer Service
 
-| Endpoint                  | Method | Description                         | Example                                      |
-| ------------------------- | ------ | ----------------------------------- | -------------------------------------------- |
-| `/customer/register`      | POST   | Register a new customer.            | ![Customer Registration Example](/docs/images/customer_registration.png) |
+| Endpoint                  | Method | Description                         | Image                                      |
+| ------------------------- | ------ | ----------------------------------- | ------------------------------------------- |
+| `/customer/register`      | POST   | Register a new customer.            | ![Customer Registration](/docs/images/customer_registration.png) |
 
