@@ -50,8 +50,8 @@ To orchestrate and manage interactions between these microservices, I implemente
 
 | Endpoint                        | Method | Description                                   | Image                                       |
 | ------------------------------- | ------ | --------------------------------------------- | -------------------------------------------- |
-| `/hotels`              | GET    | Retrieve information about a specific hotel. | <img src="https://firebasestorage.googleapis.com/v0/b/microservices-402412.appspot.com/o/hotels.PNG?alt=media&token=d034cfe2-c897-4d12-b771-a5628e25a51f" width="200"> |
-| `/hotels/{id}`              | GET    | Retrieve information about a specific hotel. | <img src="https://firebasestorage.googleapis.com/v0/b/microservices-402412.appspot.com/o/hotels.PNG?alt=media&token=d034cfe2-c897-4d12-b771-a5628e25a51f" width="200"> |
+| `/hotels`              | GET    | Retrieve information about all the hotels. | <img src="https://firebasestorage.googleapis.com/v0/b/microservices-402412.appspot.com/o/hotels2.PNG?alt=media&token=0a6b608a-9ba9-4e95-b87e-dd074be237c6" width="200"> |
+| `/hotels/{id}`              | GET    | Retrieve information about a specific hotel. | <img src="https://firebasestorage.googleapis.com/v0/b/microservices-402412.appspot.com/o/specific_hotel.PNG?alt=media&token=ffd92109-cc16-4184-a28a-19baf1522f05" width="200"> |
 
 ### Room Service
 
