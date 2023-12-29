@@ -41,24 +41,25 @@ The `customer-service` microservice is the primary interaction point for custome
 
 To orchestrate and manage interactions between these microservices, I implemented an API Gateway 🌐. This gateway acts as a single entry point for clients and handles requests efficiently by routing them to the respective microservices.
 
+**API Gateway Entry Point:** [https://api-gateway-eliasgrinwis.cloud.okteto.net/](https://api-gateway-eliasgrinwis.cloud.okteto.net/)
+
 ## Endpoints 🛤️
 
 ### Hotel Service
 
 | Endpoint                        | Method | Description                                   | Image                                       |
 | ------------------------------- | ------ | --------------------------------------------- | -------------------------------------------- |
-| `/hotels`              | GET    | Retrieve information about a specific hotel. | ![Alt text](https://firebasestorage.googleapis.com/v0/b/microservices-402412.appspot.com/o/hotels.PNG?alt=media&token=d034cfe2-c897-4d12-b771-a5628e25a51f) |
+| `/hotel/{hotelId}`              | GET    | Retrieve information about a specific hotel. | <img src="https://firebasestorage.googleapis.com/v0/b/microservices-402412.appspot.com/o/hotels.PNG?alt=media&token=d034cfe2-c897-4d12-b771-a5628e25a51f" width="200"> |
 
 ### Room Service
 
 | Endpoint              | Method | Description                             | Image                                |
 | --------------------- | ------ | --------------------------------------- | ------------------------------------- |
-| `/room/types`         | GET    | Get a list of available room types.     | ![Get Room Types](/docs/images/get_room_types.png) |
-| `/room/book`          | POST   | Book a room for a specified duration.   | ![Book a Room](/docs/images/book_room.png) |
+| `/room/types`         | GET    | Get a list of available room types.     | <img src="YOUR_IMAGE_URL" width="200"> |
+| `/room/book`          | POST   | Book a room for a specified duration.   | <img src="YOUR_IMAGE_URL" width="200"> |
 
 ### Customer Service
 
 | Endpoint                  | Method | Description                         | Image                                      |
 | ------------------------- | ------ | ----------------------------------- | ------------------------------------------- |
-| `/customer/register`      | POST   | Register a new customer.            | ![Customer Registration](/docs/images/customer_registration.png) |
-
+| `/customer/register`      | POST   | Register a new customer. 
