@@ -40,3 +40,35 @@ The `customer-service` microservice is the primary interaction point for custome
 ### Gateway 🌐
 
 To orchestrate and manage interactions between these microservices, I implemented an API Gateway 🌐. This gateway acts as a single entry point for clients and handles requests efficiently by routing them to the respective microservices.
+
+
+### Endpoints 🛤️
+
+#### 1. **Get Hotel Information**
+   - **Endpoint:** `/hotel/{hotelId}`
+   - **Method:** `GET`
+   - **Description:** Retrieve information about a specific hotel.
+   - **Example:**
+     ![Get Hotel Information Example](/docs/images/get_hotel_info.png)
+
+#### 2. **Get Room Types**
+   - **Endpoint:** `/room/types`
+   - **Method:** `GET`
+   - **Description:** Get a list of available room types.
+   - **Example:**
+     ![Get Room Types Example](/docs/images/get_room_types.png)
+
+#### 3. **Customer Registration**
+   - **Endpoint:** `/customer/register`
+   - **Method:** `POST`
+   - **Description:** Register a new customer.
+   - **Example:**
+     ![Customer Registration Example](/docs/images/customer_registration.png)
+
+#### 4. **Book a Room**
+   - **Endpoint:** `/room/book`
+   - **Method:** `POST`
+   - **Description:** Book a room for a specified duration.
+   - **Example:**
+     ![Book a Room Example](/docs/images/book_room.png)
+
