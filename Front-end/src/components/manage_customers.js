@@ -7,6 +7,7 @@ function ManageCustomers({userToken}) {
   const [customers, setCustomers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+  const [errorStatus, setErrorStatus] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -15,6 +16,7 @@ function ManageCustomers({userToken}) {
         const result = await CustomerApi.getCustomers(userToken);
         setCustomers(result.data);
       } catch (error) {
+        setErrorStatus(error.response.status);
         setError(true);
       }
       setLoading(false);
@@ -24,11 +26,11 @@ function ManageCustomers({userToken}) {
   }, [userToken]);
 
   if (loading) return <Loading />;
-  if (error) return <Error />;
+  if (error) return <Error statusCode={errorStatus} />;
 
   return (
     <div>
-      <h1 className="text-4xl font-bold mb-2">Manage Customers</h1>
+      <h1 className="text-4xl font-bold mb-6">Manage Customers</h1>
 
       <table className="min-w-full border border-gray-300">
         <thead>

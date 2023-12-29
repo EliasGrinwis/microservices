@@ -16,6 +16,7 @@ function ManageHotels({userToken}) {
     image: "",
   });
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
+  const [errorStatus, setErrorStatus] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -24,6 +25,7 @@ function ManageHotels({userToken}) {
         const result = await HotelApi.getHotels();
         setHotels(result);
       } catch (error) {
+        setErrorStatus(error.response.status);
         setError(true);
       }
       setLoading(false);
@@ -76,7 +78,7 @@ function ManageHotels({userToken}) {
   };
 
   if (loading) return <Loading />;
-  if (error) return <Error />;
+  if (error) return <Error statusCode={errorStatus} />;
 
   return (
     <div>

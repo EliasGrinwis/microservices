@@ -22,6 +22,7 @@ function ManageRooms({userToken}) {
   });
 
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
+  const [errorStatus, setErrorStatus] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -33,6 +34,7 @@ function ManageRooms({userToken}) {
         setRooms(result.data);
         setHotels(resultHotels);
       } catch (error) {
+        setErrorStatus(error.response.status);
         setError(true);
       }
       setLoading(false);
@@ -75,7 +77,7 @@ function ManageRooms({userToken}) {
   };
 
   if (loading) return <Loading />;
-  if (error) return <Error />;
+  if (error) return <Error statusCode={errorStatus} />;
 
   return (
     <div>

@@ -12,25 +12,25 @@ function Dashboard({userToken}) {
   };
 
   return (
-    <div>
-      <div className="container mx-auto">
+    <div className="w-[95%] lg:w-[85%] mx-auto max-w-[1650px]">
+      <div>
         <Tabs selectedIndex={tabIndex} onSelect={handleTabChange}>
-          <TabList className="flex flex-wrap -mb-px text-sm font-medium text-center text-gray-500 border-gray-200">
+          <TabList className="flex flex-wrap text-sm font-medium text-gray-500 mb-10">
             <Tab
-              className={`cursor-pointer p-4 border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 ${
-                tabIndex === 0 ? "border-gray-500" : ""
+              className={`cursor-pointer p-4 focus:outline-none text-left ${
+                tabIndex === 0 ? "text-gray-600 border-b-2 border-gray-500" : ""
               }`}>
               Customers
             </Tab>
             <Tab
-              className={`cursor-pointer p-4 border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 ${
-                tabIndex === 1 ? "border-gray-500" : ""
+              className={`cursor-pointer p-4 focus:outline-none text-left ${
+                tabIndex === 1 ? "text-gray-600 border-b-2 border-gray-500" : ""
               }`}>
               Hotels
             </Tab>
             <Tab
-              className={`cursor-pointer p-4 border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 ${
-                tabIndex === 2 ? "border-gray-500" : ""
+              className={`cursor-pointer p-4 focus:outline-none text-left ${
+                tabIndex === 2 ? "text-gray-600 border-b-2 border-gray-500" : ""
               }`}>
               Rooms
             </Tab>

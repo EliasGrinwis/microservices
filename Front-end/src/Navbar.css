@@ -1,6 +1,6 @@
 .nav-container {
-  margin: 0 auto;
-  padding: 1rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;

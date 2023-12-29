@@ -46,6 +46,11 @@ spring:
             - Method=GET
           filters:
             - SetPath=/api/hotel/{id}
+            - name: RequestRateLimiter
+              args:
+                redis-rate-limiter.replenishRate: 1
+                redis-rate-limiter.burstCapacity: 2
+                redis-rate-limiter.requestedToken: 1
 
         # POST HOTEL
         - id: hotel-service-create
@@ -55,6 +60,11 @@ spring:
             - Method=POST
           filters:
             - SetPath=/api/hotel
+            - name: RequestRateLimiter
+              args:
+                redis-rate-limiter.replenishRate: 1
+                redis-rate-limiter.burstCapacity: 2
+                redis-rate-limiter.requestedToken: 1
 
         # PUT HOTEL
         - id: hotel-service-update
@@ -64,6 +74,11 @@ spring:
             - Method=PUT
           filters:
             - SetPath=/api/hotel/{id}
+            - name: RequestRateLimiter
+              args:
+                redis-rate-limiter.replenishRate: 1
+                redis-rate-limiter.burstCapacity: 2
+                redis-rate-limiter.requestedToken: 1
 
         # DELETE HOTEL
         - id: hotel-service-delete
@@ -73,6 +88,11 @@ spring:
             - Method=DELETE
           filters:
             - SetPath=/api/hotel/{id}
+            - name: RequestRateLimiter
+              args:
+                redis-rate-limiter.replenishRate: 1
+                redis-rate-limiter.burstCapacity: 2
+                redis-rate-limiter.requestedToken: 1
 
         # GET ROOMS
         - id: room-service-all
@@ -82,6 +102,11 @@ spring:
             - Method=GET
           filters:
             - SetPath=/api/room
+            - name: RequestRateLimiter
+              args:
+                redis-rate-limiter.replenishRate: 1
+                redis-rate-limiter.burstCapacity: 2
+                redis-rate-limiter.requestedToken: 1
 
         # GET ROOM
         - id: room-service
@@ -91,6 +116,11 @@ spring:
             - Method=GET
           filters:
             - SetPath=/api/room/{id}
+            - name: RequestRateLimiter
+              args:
+                redis-rate-limiter.replenishRate: 1
+                redis-rate-limiter.burstCapacity: 2
+                redis-rate-limiter.requestedToken: 1
 
         # POST ROOM
         - id: room-service-create
@@ -100,6 +130,11 @@ spring:
             - Method=POST
           filters:
             - SetPath=/api/room
+            - name: RequestRateLimiter
+              args:
+                redis-rate-limiter.replenishRate: 1
+                redis-rate-limiter.burstCapacity: 2
+                redis-rate-limiter.requestedToken: 1
 
         # GET CUSTOMERS
         - id: customer-service-all
@@ -109,6 +144,11 @@ spring:
             - Method=GET
           filters:
             - SetPath=/api/customer
+            - name: RequestRateLimiter
+              args:
+                redis-rate-limiter.replenishRate: 1
+                redis-rate-limiter.burstCapacity: 2
+                redis-rate-limiter.requestedToken: 1
 
         # POST CUSTOMER
         - id: customer-service-create
@@ -118,3 +158,8 @@ spring:
             - Method=POST
           filters:
             - SetPath=/api/customer
+            - name: RequestRateLimiter
+              args:
+                redis-rate-limiter.replenishRate: 1
+                redis-rate-limiter.burstCapacity: 2
+                redis-rate-limiter.requestedToken: 1
