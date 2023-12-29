@@ -41,11 +41,11 @@ The `customer-service` microservice is the primary interaction point for custome
 
 To orchestrate and manage interactions between these microservices, I implemented an API Gateway 🌐. This gateway acts as a single entry point for clients and handles requests efficiently by routing them to the respective microservices.
 
-## Endpoints 🛤️
+## Endpoints 📍
 
 API Gateway Entry Point: `https://api-gateway-eliasgrinwis.cloud.okteto.net`
 
-**Rate Limiter 📍**
+**Rate Limiter 🚦**
 
 All endpoints are equipped with a rate limiter to ensure fair usage and prevent abuse. This mechanism helps maintain the stability and performance of the API by restricting the number of requests a user or client can make within a specified time frame.
 
