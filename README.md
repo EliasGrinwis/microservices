@@ -44,31 +44,22 @@ To orchestrate and manage interactions between these microservices, I implemente
 
 ## Endpoints 🛤️
 
-#### 1. **Get Hotel Information**
-   - **Endpoint:** `/hotel/{hotelId}`
-   - **Method:** `GET`
-   - **Description:** Retrieve information about a specific hotel.
-   - **Example:**
-     ![Get Hotel Information Example](/docs/images/get_hotel_info.png)
+### Hotel Service
 
-#### 2. **Get Room Types**
-   - **Endpoint:** `/room/types`
-   - **Method:** `GET`
-   - **Description:** Get a list of available room types.
-   - **Example:**
-     ![Get Room Types Example](/docs/images/get_room_types.png)
+| Endpoint                        | Method | Description                                   | Example                                      |
+| ------------------------------- | ------ | --------------------------------------------- | -------------------------------------------- |
+| `/hotel/{hotelId}`              | GET    | Retrieve information about a specific hotel. | ![Get Hotel Information Example](/docs/images/get_hotel_info.png) |
 
-#### 3. **Customer Registration**
-   - **Endpoint:** `/customer/register`
-   - **Method:** `POST`
-   - **Description:** Register a new customer.
-   - **Example:**
-     ![Customer Registration Example](/docs/images/customer_registration.png)
+### Room Service
 
-#### 4. **Book a Room**
-   - **Endpoint:** `/room/book`
-   - **Method:** `POST`
-   - **Description:** Book a room for a specified duration.
-   - **Example:**
-     ![Book a Room Example](/docs/images/book_room.png)
+| Endpoint              | Method | Description                             | Example                                |
+| --------------------- | ------ | --------------------------------------- | -------------------------------------- |
+| `/room/types`         | GET    | Get a list of available room types.     | ![Get Room Types Example](/docs/images/get_room_types.png) |
+| `/room/book`          | POST   | Book a room for a specified duration.   | ![Book a Room Example](/docs/images/book_room.png) |
+
+### Customer Service
+
+| Endpoint                  | Method | Description                         | Example                                      |
+| ------------------------- | ------ | ----------------------------------- | -------------------------------------------- |
+| `/customer/register`      | POST   | Register a new customer.            | ![Customer Registration Example](/docs/images/customer_registration.png) |
 
