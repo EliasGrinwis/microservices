@@ -43,6 +43,8 @@ To orchestrate and manage interactions between these microservices, I implemente
 
 ## Endpoints 🛤️
 
+**API Gateway Entry Point:** [https://api-gateway-eliasgrinwis.cloud.okteto.net/](https://api-gateway-eliasgrinwis.cloud.okteto.net/)
+
 ### Hotel Service 🏢
 
 | Endpoint                        | Method | Description                                   | Auth Required | Image                                       |
