@@ -11,6 +11,6 @@ public class RoomRequest {
     private double pricePerDay;
     private int amountOfBeds;
     private int roomSize;
-    private boolean isKitchen;
-    private boolean isTelevision;
+    private boolean kitchen;
+    private boolean television;
 }
