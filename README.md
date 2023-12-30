@@ -73,5 +73,3 @@ All endpoints are equipped with a rate limiter to ensure fair usage and prevent 
 | --- | --- | --- | --- | --- |
 | `/customers` | GET | Retrieve information about all the customers. | Yes | <img src="https://firebasestorage.googleapis.com/v0/b/microservices-402412.appspot.com/o/customers.PNG?alt=media&token=d4b5bcae-e6e2-4903-8add-718684beee82" width="200"> |
 | `/customers` | POST | Create a customer. | Yes | <img src="https://firebasestorage.googleapis.com/v0/b/microservices-402412.appspot.com/o/create_customer.PNG?alt=media&token=5f3e4c9f-64b2-4e25-b8d6-c3c08ff70d6f" width="200"> |
-
-> > > > > > > 143f84d9cdccc10a4cb04179edd4206fa967b28a
