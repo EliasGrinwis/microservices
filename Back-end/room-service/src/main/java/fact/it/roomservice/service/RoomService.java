@@ -73,8 +73,7 @@ public class RoomService {
         room.setAmountOfBeds(roomRequest.getAmountOfBeds());
         room.setRoomSize(roomRequest.getRoomSize());
         room.setKitchen(roomRequest.isKitchen());
-        room.setTelevision(Boolean.parseBoolean(roomRequest.isTelevision()));
-        //room.setTelevision(roomRequest.isTelevision());
+        room.setTelevision(roomRequest.isTelevision());
 
         Room savedRoom = roomRepository.save(room);
         return savedRoom.getId();
