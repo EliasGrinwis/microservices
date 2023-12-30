@@ -6,6 +6,7 @@ import React, {useEffect, useState} from "react";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Login from "./components/login";
 import Navbar from "./components/navbar";
+import Room from "./components/room";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -37,6 +38,7 @@ function App() {
       />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/hotel/:id" element={<Room />} />
         <Route
           path="/dashboard"
           element={<Dashboard userToken={userToken} />}

@@ -5,6 +5,7 @@ import Error from "../components/error";
 
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faBed, faMapMarkerAlt} from "@fortawesome/free-solid-svg-icons";
+import {Link} from "react-router-dom";
 
 function HotelList() {
   const [hotels, setHotels] = useState(null);
@@ -20,6 +21,7 @@ function HotelList() {
         setHotels(result);
       } catch (error) {
         setErrorStatus(error.response.status);
+
         setError(true);
       }
       setLoading(false);
@@ -65,9 +67,11 @@ function HotelList() {
           {hotel.description}
         </p>
         <div className="absolute bottom-5 right-6">
-          <button className="bg-indigo-600 hover:bg-indigo-500 text-white p-2 rounded-md">
-            View Rooms
-          </button>
+          <Link to={"hotel/" + hotel.id}>
+            <button className="bg-indigo-600 hover:bg-indigo-500 text-white p-2 rounded-md">
+              View Rooms
+            </button>
+          </Link>
         </div>
       </div>
     </div>
