@@ -67,11 +67,14 @@ public class RoomService {
     public long createRoom(RoomRequest roomRequest) {
         Room room = new Room();
 
+        System.out.println(roomRequest.isKitchen());  // Print the value to the console
+
         room.setPricePerDay(roomRequest.getPricePerDay());
         room.setAmountOfBeds(roomRequest.getAmountOfBeds());
         room.setRoomSize(roomRequest.getRoomSize());
         room.setKitchen(roomRequest.isKitchen());
-        room.setTelevision(roomRequest.isTelevision());
+        room.setTelevision(Boolean.parseBoolean(roomRequest.isTelevision()));
+        //room.setTelevision(roomRequest.isTelevision());
 
         Room savedRoom = roomRepository.save(room);
         return savedRoom.getId();
