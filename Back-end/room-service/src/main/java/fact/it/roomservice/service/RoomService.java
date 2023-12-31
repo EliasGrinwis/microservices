@@ -67,8 +67,6 @@ public class RoomService {
     public long createRoom(RoomRequest roomRequest) {
         Room room = new Room();
 
-        System.out.println(roomRequest.isKitchen());  // Print the value to the console
-
         room.setPricePerDay(roomRequest.getPricePerDay());
         room.setAmountOfBeds(roomRequest.getAmountOfBeds());
         room.setRoomSize(roomRequest.getRoomSize());

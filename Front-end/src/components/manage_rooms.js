@@ -11,11 +11,11 @@ function ManageRooms({userToken}) {
   const [error, setError] = useState(false);
 
   const [newRoomData, setNewRoomData] = useState({
-    pricePerDay: 0,
-    amountOfBeds: 0,
-    roomSize: 0,
-    isKitchen: false,
-    isTelevision: false,
+    pricePerDay: "",
+    amountOfBeds: "",
+    roomSize: "",
+    kitchen: "",
+    television: "",
   });
   const [hotel, setHotel] = useState({
     hotelId: 0,
@@ -53,6 +53,7 @@ function ManageRooms({userToken}) {
 
   const handleCreateRoom = async () => {
     try {
+      console.log(newRoomData);
       // Create a new room
       const createdRoomResponse = await RoomApi.createRoom(
         newRoomData,
@@ -160,14 +161,16 @@ function ManageRooms({userToken}) {
               </label>
               <select
                 id="isKitchen"
-                value={newRoomData.isKitchen}
+                value={newRoomData.kitchen}
                 onChange={(e) =>
-                  setNewRoomData({...newRoomData, isKitchen: e.target.value})
+                  setNewRoomData({...newRoomData, kitchen: e.target.value})
                 }
                 className="mt-1 p-2 border w-full">
-                <option value="">Select an option</option>
-                <option value="true">True</option>
-                <option value="false">False</option>
+                <option selected value="">
+                  Select an option
+                </option>
+                <option value={true}>True</option>
+                <option value={false}>False</option>
               </select>
             </div>
 
@@ -179,12 +182,17 @@ function ManageRooms({userToken}) {
               </label>
               <select
                 id="isTelevision"
-                value={newRoomData.isTelevision}
+                value={newRoomData.television}
                 onChange={(e) =>
-                  setNewRoomData({...newRoomData, isTelevision: e.target.value})
+                  setNewRoomData({
+                    ...newRoomData,
+                    television: e.target.value === "true",
+                  })
                 }
                 className="mt-1 p-2 border w-full">
-                <option value="">Select an option</option>
+                <option selected value="">
+                  Select an option
+                </option>
                 <option value="true">True</option>
                 <option value="false">False</option>
               </select>
