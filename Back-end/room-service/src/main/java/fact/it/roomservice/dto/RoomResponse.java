@@ -9,9 +9,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class RoomResponse {
     private Long id;
+    private String description;
     private double pricePerDay;
     private int amountOfBeds;
     private int roomSize;
     private boolean kitchen;
     private boolean television;
+    private String picture;
 }

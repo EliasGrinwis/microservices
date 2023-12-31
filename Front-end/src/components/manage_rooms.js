@@ -3,6 +3,7 @@ import Loading from "../components/loading";
 import Error from "../components/error";
 import RoomApi from "../apis/room_api";
 import HotelApi from "../apis/hotel_api";
+import {storage, ref, uploadBytes, getDownloadURL} from "../config/firebase";
 
 function ManageRooms({userToken}) {
   const [rooms, setRooms] = useState([]);
@@ -11,11 +12,13 @@ function ManageRooms({userToken}) {
   const [error, setError] = useState(false);
 
   const [newRoomData, setNewRoomData] = useState({
+    description: "",
     pricePerDay: "",
     amountOfBeds: "",
     roomSize: "",
     kitchen: "",
     television: "",
+    picture: "",
   });
   const [hotel, setHotel] = useState({
     hotelId: 0,
@@ -53,10 +56,20 @@ function ManageRooms({userToken}) {
 
   const handleCreateRoom = async () => {
     try {
-      console.log(newRoomData);
+      const storageRef = ref(
+        storage,
+        `images/rooms/${newRoomData.picture.name}`
+      );
+      await uploadBytes(storageRef, newRoomData.picture);
+
+      const imageUrl = await getDownloadURL(storageRef);
+
+      const roomWithImage = {...newRoomData, picture: imageUrl};
+
+      console.log(roomWithImage);
       // Create a new room
       const createdRoomResponse = await RoomApi.createRoom(
-        newRoomData,
+        roomWithImage,
         userToken
       );
       const createdRoomId = createdRoomResponse.data;
@@ -96,6 +109,24 @@ function ManageRooms({userToken}) {
             <h2 className="text-2xl font-bold mb-4">Create Room</h2>
 
             {/* Form fields for new hotel data */}
+            <div className="mb-2">
+              <label
+                htmlFor="pricePerDay"
+                className="block text-sm font-medium text-gray-700">
+                Room description
+              </label>
+              <input
+                type="text"
+                id="pricePerDay"
+                placeholder="Enter room description"
+                value={newRoomData.description}
+                onChange={(e) =>
+                  setNewRoomData({...newRoomData, description: e.target.value})
+                }
+                className="mt-1 p-2 border w-full"
+              />
+            </div>
+
             <div className="mb-2">
               <label
                 htmlFor="pricePerDay"
@@ -216,6 +247,37 @@ function ManageRooms({userToken}) {
                   </option>
                 ))}
               </select>
+            </div>
+
+            <div className="mb-2">
+              <label
+                htmlFor="picture"
+                className="block text-sm font-medium text-gray-700">
+                Image
+              </label>
+              <div className="flex items-center mt-1">
+                <label
+                  htmlFor="fileInput"
+                  className="cursor-pointer bg-blue-500 text-white px-4 py-2 rounded">
+                  Choose File
+                </label>
+                <input
+                  type="file"
+                  id="fileInput"
+                  accept="image/*"
+                  onChange={(e) => {
+                    const file = e.target.files[0];
+                    setNewRoomData({...newRoomData, picture: file});
+                  }}
+                  className="hidden"
+                />
+
+                <span className="ml-2">
+                  {newRoomData.picture
+                    ? newRoomData.picture.name
+                    : "No file chosen"}
+                </span>
+              </div>
             </div>
 
             {/* Buttons for creating and canceling */}

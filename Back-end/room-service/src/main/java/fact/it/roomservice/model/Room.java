@@ -16,10 +16,11 @@ public class Room {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private  String description;
     private double pricePerDay;
     private int amountOfBeds;
     private int roomSize;
-    private boolean isKitchen;
-    private boolean isTelevision;
-
+    private boolean kitchen;
+    private boolean television;
+    private String picture;
 }

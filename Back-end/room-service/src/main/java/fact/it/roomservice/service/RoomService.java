@@ -44,11 +44,13 @@ public class RoomService {
         return rooms.stream()
                 .map(room -> new RoomResponse(
                         room.getId(),
+                        room.getDescription(),
                         room.getPricePerDay(),
                         room.getAmountOfBeds(),
                         room.getRoomSize(),
                         room.isKitchen(),
-                        room.isTelevision()
+                        room.isTelevision(),
+                        room.getPicture()
                 ))
                 .collect(Collectors.toList());
     }
@@ -58,7 +60,7 @@ public class RoomService {
 
         if (roomOptional.isPresent()) {
             Room room = roomOptional.get();
-            return new RoomResponse(room.getId(), room.getPricePerDay(), room.getAmountOfBeds(), room.getRoomSize(), room.isKitchen(), room.isTelevision());
+            return new RoomResponse(room.getId(), room.getDescription(), room.getPricePerDay(), room.getAmountOfBeds(), room.getRoomSize(), room.isKitchen(), room.isTelevision(), room.getPicture());
         } else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Room not found");
         }
@@ -67,11 +69,13 @@ public class RoomService {
     public long createRoom(RoomRequest roomRequest) {
         Room room = new Room();
 
+        room.setDescription(roomRequest.getDescription());
         room.setPricePerDay(roomRequest.getPricePerDay());
         room.setAmountOfBeds(roomRequest.getAmountOfBeds());
         room.setRoomSize(roomRequest.getRoomSize());
         room.setKitchen(roomRequest.isKitchen());
         room.setTelevision(roomRequest.isTelevision());
+        room.setPicture(roomRequest.getPicture());
 
         Room savedRoom = roomRepository.save(room);
         return savedRoom.getId();
