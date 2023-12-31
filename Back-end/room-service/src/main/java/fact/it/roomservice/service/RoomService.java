@@ -28,11 +28,13 @@ public class RoomService {
     public void loadData() {
         if(roomRepository.count() <= 0){
             Room room = new Room();
+            room.setDescription("Test description");
             room.setPricePerDay(59);
             room.setAmountOfBeds(3);
             room.setRoomSize(300);
             room.setKitchen(false);
             room.setTelevision(true);
+            room.setPicture("https://firebasestorage.googleapis.com/v0/b/microservices-402412.appspot.com/o/kamer1.jpg?alt=media&token=09927356-3def-4eec-acec-680205bb2b12");
 
             roomRepository.save(room);
         }
