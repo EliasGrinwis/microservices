@@ -11,15 +11,17 @@ import {
   faKitchenSet,
 } from "@fortawesome/free-solid-svg-icons";
 import RoomApi from "../apis/room_api";
+import Error from "./error";
 
 function Room() {
   const {id} = useParams();
   const [hotel, setHotel] = useState(null);
   const [rooms, setRooms] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
+  const [errorStatus, setErrorStatus] = useState(null);
 
   useEffect(() => {
-    console.log("one");
     const fetchData = async () => {
       setLoading(true);
       try {
@@ -28,12 +30,13 @@ function Room() {
         for (let i = 0; i < result.data.roomIds.length; i++) {
           const roomId = result.data.roomIds[i];
           const resultRoom = await RoomApi.getRoom(roomId);
-          console.log(resultRoom.data);
           setRooms((prevRooms) => [...prevRooms, resultRoom.data]);
         }
         setHotel(result.data);
       } catch (error) {
-        console.log(error.message);
+        setErrorStatus(error.response.status);
+
+        setError(true);
       }
       setLoading(false);
     };
@@ -45,6 +48,13 @@ function Room() {
     return (
       <div className="mt-10">
         <Loading />
+      </div>
+    );
+
+  if (error)
+    return (
+      <div className="mt-10">
+        <Error statusCode={errorStatus} />
       </div>
     );
 
@@ -67,62 +77,55 @@ function Room() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
           {hotel &&
             rooms.map((room, i) => (
-              <div key={i}>
-                <div className="bg-white p-6 rounded-md mb-4 sm:flex">
-                  <div>
+              <div key={i} className="bg-gray-100 p-4 sm:p-6 rounded-md mb-4">
+                <div className="flex flex-col sm:flex-row">
+                  <div className="mb-4 sm:mb-0 sm:mr-4">
                     <img
-                      className="w-full h-24 sm:w-44 sm:h-full object-cover rounded-md mr-4"
+                      className="w-full h-24 sm:w-44 sm:h-full object-cover rounded-md"
                       src={room.picture}
-                      alt={room.name + "Image"}
+                      alt={room.name + " Image"}
                     />
                   </div>
-                  <div className="">
+                  <div className="flex-1">
                     <h1 className="text-2xl font-bold mb-2 text-gray-800">
                       Room {i + 1}
                     </h1>
                     <p className="text-gray-600 mb-4">{room.description}</p>
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center">
-                        <FontAwesomeIcon
-                          icon={faDollarSign}
-                          className="mr-2 text-gray-800"
-                        />
+                    <div className="flex flex-wrap items-center justify-between text-gray-800 p-2 rounded-md">
+                      <div className="flex items-center mb-2 sm:mb-0">
+                        <FontAwesomeIcon icon={faDollarSign} className="mr-2" />
                         <span className="text-lg font-semibold">
                           {room.pricePerDay.toFixed(2)}
                         </span>
                       </div>
-                      <div className="flex items-center">
-                        <FontAwesomeIcon
-                          icon={faBed}
-                          className="mr-2 text-gray-800"
-                        />
+                      <div className="flex items-center mb-2 sm:mb-0">
+                        <FontAwesomeIcon icon={faBed} className="mr-2" />
                         <span className="text-lg">
                           {room.amountOfBeds} beds
                         </span>
                       </div>
-                      <div className="flex items-center">
+                      <div className="flex items-center mb-2 sm:mb-0">
                         <FontAwesomeIcon
                           icon={faExpandArrowsAlt}
-                          className="mr-2 text-gray-800"
+                          className="mr-2"
                         />
                         <span className="text-lg">{room.roomSize} m²</span>
                       </div>
-                      <div className="flex items-center">
-                        {room.television ? (
-                          <FontAwesomeIcon
-                            icon={faTv}
-                            className="mr-2 text-gray-800"
-                          />
-                        ) : null}
-                      </div>
-                      <div className="flex items-center">
-                        {room.kitchen ? (
+                      {room.television && (
+                        <div className="flex items-center mb-2 sm:mb-0">
+                          <FontAwesomeIcon icon={faTv} className="mr-2" />
+                          <span className="text-sm">TV</span>
+                        </div>
+                      )}
+                      {room.kitchen && (
+                        <div className="flex items-center mb-2 sm:mb-0">
                           <FontAwesomeIcon
                             icon={faKitchenSet}
-                            className="mr-2 text-gray-800"
+                            className="mr-2"
                           />
-                        ) : null}
-                      </div>
+                          <span className="text-sm">Kitchen</span>
+                        </div>
+                      )}
                     </div>
                     <div className="mt-4">
                       <button className="bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-md">

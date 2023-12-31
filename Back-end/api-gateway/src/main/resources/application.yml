@@ -34,8 +34,8 @@ spring:
             - SetPath=/api/hotel
             - name: RequestRateLimiter
               args:
-                redis-rate-limiter.replenishRate: 5
-                redis-rate-limiter.burstCapacity: 10
+                redis-rate-limiter.replenishRate: 2
+                redis-rate-limiter.burstCapacity: 4
                 redis-rate-limiter.requestedToken: 1
 
         # GET Hotel
@@ -48,8 +48,8 @@ spring:
             - SetPath=/api/hotel/{id}
             - name: RequestRateLimiter
               args:
-                redis-rate-limiter.replenishRate: 5
-                redis-rate-limiter.burstCapacity: 10
+                redis-rate-limiter.replenishRate: 2
+                redis-rate-limiter.burstCapacity: 4
                 redis-rate-limiter.requestedToken: 1
 
         # POST HOTEL
@@ -62,8 +62,8 @@ spring:
             - SetPath=/api/hotel
             - name: RequestRateLimiter
               args:
-                redis-rate-limiter.replenishRate: 5
-                redis-rate-limiter.burstCapacity: 10
+                redis-rate-limiter.replenishRate: 2
+                redis-rate-limiter.burstCapacity: 4
                 redis-rate-limiter.requestedToken: 1
 
         # PUT HOTEL
@@ -76,8 +76,8 @@ spring:
             - SetPath=/api/hotel/{id}
             - name: RequestRateLimiter
               args:
-                redis-rate-limiter.replenishRate: 5
-                redis-rate-limiter.burstCapacity: 10
+                redis-rate-limiter.replenishRate: 2
+                redis-rate-limiter.burstCapacity: 4
                 redis-rate-limiter.requestedToken: 1
 
         # DELETE HOTEL
@@ -90,8 +90,8 @@ spring:
             - SetPath=/api/hotel/{id}
             - name: RequestRateLimiter
               args:
-                redis-rate-limiter.replenishRate: 5
-                redis-rate-limiter.burstCapacity: 10
+                redis-rate-limiter.replenishRate: 2
+                redis-rate-limiter.burstCapacity: 4
                 redis-rate-limiter.requestedToken: 1
 
         # GET ROOMS
@@ -104,8 +104,8 @@ spring:
             - SetPath=/api/room
             - name: RequestRateLimiter
               args:
-                redis-rate-limiter.replenishRate: 5 
-                redis-rate-limiter.burstCapacity: 10
+                redis-rate-limiter.replenishRate: 2
+                redis-rate-limiter.burstCapacity: 4
                 redis-rate-limiter.requestedToken: 1
 
         # GET ROOM
@@ -118,8 +118,8 @@ spring:
             - SetPath=/api/room/{id}
             - name: RequestRateLimiter
               args:
-                redis-rate-limiter.replenishRate: 5
-                redis-rate-limiter.burstCapacity: 10
+                redis-rate-limiter.replenishRate: 2
+                redis-rate-limiter.burstCapacity: 4
                 redis-rate-limiter.requestedToken: 1
 
         # POST ROOM
@@ -132,8 +132,8 @@ spring:
             - SetPath=/api/room
             - name: RequestRateLimiter
               args:
-                redis-rate-limiter.replenishRate: 5
-                redis-rate-limiter.burstCapacity: 10
+                redis-rate-limiter.replenishRate: 2
+                redis-rate-limiter.burstCapacity: 4
                 redis-rate-limiter.requestedToken: 1
 
         # GET CUSTOMERS
@@ -146,8 +146,8 @@ spring:
             - SetPath=/api/customer
             - name: RequestRateLimiter
               args:
-                redis-rate-limiter.replenishRate: 5
-                redis-rate-limiter.burstCapacity: 10
+                redis-rate-limiter.replenishRate: 2
+                redis-rate-limiter.burstCapacity: 4
                 redis-rate-limiter.requestedToken: 1
 
         # POST CUSTOMER
@@ -160,6 +160,6 @@ spring:
             - SetPath=/api/customer
             - name: RequestRateLimiter
               args:
-                redis-rate-limiter.replenishRate: 5
-                redis-rate-limiter.burstCapacity: 10
+                redis-rate-limiter.replenishRate: 2
+                redis-rate-limiter.burstCapacity: 4
                 redis-rate-limiter.requestedToken: 1
