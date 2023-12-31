@@ -32,8 +32,8 @@ class RoomServiceUnitTests {
 	public void testGetAllRooms() {
 		// Arrange
 		List<Room> mockRooms = Arrays.asList(
-				new Room(1L, 100.0, 1, 20, true, true),
-				new Room(2L, 150.0, 2, 30, false, true)
+				new Room(1L, "test description", 100.0, 1, 20, true, true, ""),
+				new Room(2L, "test description2", 150.0, 2, 30, false, true, "")
 				// Add more mock data as needed
 		);
 		when(roomRepository.findAll()).thenReturn(mockRooms);
@@ -49,7 +49,7 @@ class RoomServiceUnitTests {
 	public void testGetRoom() {
 		// Arrange
 		Long roomId = 1L;
-		Room mockRoom = new Room(roomId, 100.0, 1, 20, true, true);
+		Room mockRoom = new Room(roomId, "test description", 100.0, 1, 20, true, true, "");
 		when(roomRepository.findById(roomId)).thenReturn(Optional.of(mockRoom));
 
 		// Act
@@ -63,8 +63,8 @@ class RoomServiceUnitTests {
 	@Test
 	public void testCreateRoom() {
 		// Arrange
-		RoomRequest roomRequest = new RoomRequest(100.0, 1, 20, true, true);
-		when(roomRepository.save(any(Room.class))).thenReturn(new Room(1L, 100.0, 1, 20, true, true));
+		RoomRequest roomRequest = new RoomRequest("test description", 100.0, 1, 20, true, true, "");
+		when(roomRepository.save(any(Room.class))).thenReturn(new Room(1L, "test description", 100.0, 1, 20, true, true, ""));
 
 		// Act
 		long result = roomService.createRoom(roomRequest);
