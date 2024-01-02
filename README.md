@@ -36,6 +36,12 @@ The `customer-service` microservice is the primary interaction point for custome
 
 To orchestrate and manage interactions between these microservices, I implemented an API Gateway 🌐. This gateway acts as a single entry point for clients and handles requests efficiently by routing them to the respective microservices.
 
+## Schema 📐
+
+Below is the schema representing the relationships between the microservices in this project:
+
+<img src="https://firebasestorage.googleapis.com/v0/b/microservices-402412.appspot.com/o/Diagram%20zonder%20titel%20(4).png?alt=media&token=798ad5cb-f018-4854-ac1a-8e56f94a30e0">
+
 ## Endpoints 📍
 
 API Gateway Entry Point: `https://api-gateway-eliasgrinwis.cloud.okteto.net`
