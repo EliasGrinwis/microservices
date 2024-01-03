@@ -53,7 +53,7 @@ function Room() {
 
   if (error)
     return (
-      <div className="mt-10">
+      <div className="mt-10 w-[95%] lg:w-[85%] mx-auto max-w-[1650px]">
         <Error statusCode={errorStatus} />
       </div>
     );

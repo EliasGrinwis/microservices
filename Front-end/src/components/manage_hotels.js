@@ -3,6 +3,8 @@ import HotelApi from "../apis/hotel_api";
 import Loading from "../components/loading";
 import Error from "../components/error";
 import {storage, ref, uploadBytes, getDownloadURL} from "../config/firebase";
+import {faAdd, faTrash, faEdit} from "@fortawesome/free-solid-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 function ManageHotels({userToken}) {
   const [hotels, setHotels] = useState([]);
@@ -16,6 +18,7 @@ function ManageHotels({userToken}) {
     image: "",
   });
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
+  const [edit, setEdit] = useState(false);
   const [errorStatus, setErrorStatus] = useState(null);
 
   useEffect(() => {
@@ -39,6 +42,14 @@ function ManageHotels({userToken}) {
   };
 
   const closeCreateModal = () => {
+    setEdit(false);
+    setNewHotelData({
+      name: "",
+      description: "",
+      city: "",
+      address: "",
+      image: "",
+    });
     setIsCreateModalOpen(false);
   };
 
@@ -64,6 +75,39 @@ function ManageHotels({userToken}) {
     }
   };
 
+  const handleOpenEditHotel = async (hotelId) => {
+    try {
+      const result = await HotelApi.getHotel(hotelId);
+      console.log(result.data);
+      setNewHotelData(result.data);
+    } catch (error) {
+      setErrorStatus(error.response.status);
+      setError(true);
+    }
+    setEdit(true);
+    setIsCreateModalOpen(true);
+  };
+
+  const handleEditHotel = async () => {
+    try {
+      const storageRef = ref(storage, `images/${newHotelData.image.name}`);
+      await uploadBytes(storageRef, newHotelData.image);
+
+      // Get the download URL for the uploaded image
+      const imageUrl = await getDownloadURL(storageRef);
+
+      // Create a new hotel object with the image URL
+      const hotelWithImage = {...newHotelData, image: imageUrl};
+
+      await HotelApi.updateHotel(hotelWithImage, userToken);
+
+      closeCreateModal();
+    } catch (error) {
+      setErrorStatus(error.response.status);
+      setError(true);
+    }
+  };
+
   const handleDeleteHotel = async (hotelId) => {
     try {
       // Send a request to delete the hotel with the specified ID
@@ -83,17 +127,22 @@ function ManageHotels({userToken}) {
   return (
     <div>
       <h1 className="text-4xl font-bold mb-2">Manage Hotels</h1>
-      <div className="mb-3 text-end">
+      <div className="mb-3 flex justify-end">
         <button
-          className="bg-green-500 text-white px-4 py-2 rounded"
+          className="bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded flex items-center"
           onClick={showCreateModal}>
-          Create
+          <FontAwesomeIcon icon={faAdd} className="mr-2 text-lg" />
+          <p className="ml-auto">Create</p>
         </button>
       </div>
       {isCreateModalOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-          <div className="bg-white p-6 rounded-lg w-96">
-            <h2 className="text-2xl font-bold mb-4">Create Hotel</h2>
+          <div className="bg-white p-6 rounded-lg sm:w-[40%]">
+            {edit ? (
+              <h2 className="text-2xl font-bold mb-4">Edit Hotel</h2>
+            ) : (
+              <h2 className="text-2xl font-bold mb-4">Create Hotel</h2>
+            )}
 
             {/* Form fields for new hotel data */}
             <div className="mb-2">
@@ -203,11 +252,20 @@ function ManageHotels({userToken}) {
 
             {/* Buttons for creating and canceling */}
             <div className="flex mt-4">
-              <button
-                className="bg-green-500 text-white px-4 py-2 rounded"
-                onClick={handleCreateHotel}>
-                Create Hotel
-              </button>
+              {edit ? (
+                <button
+                  className="bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded"
+                  onClick={handleEditHotel}>
+                  Update Hotel
+                </button>
+              ) : (
+                <button
+                  className="bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded"
+                  onClick={handleCreateHotel}>
+                  Create Hotel
+                </button>
+              )}
+
               <button
                 className="bg-red-500 text-white px-4 py-2 rounded ml-2"
                 onClick={closeCreateModal}>
@@ -234,14 +292,27 @@ function ManageHotels({userToken}) {
               <td className="border p-2">{hotel.address}</td>
               <td className="border p-2"> {Object.keys(hotel.rooms).length}</td>
               <td className="border p-2">
-                <button className="bg-blue-500 text-white px-4 py-2 rounded mr-2">
-                  Edit
-                </button>
-                <button
-                  className="bg-red-500 text-white px-4 py-2 rounded"
-                  onClick={() => handleDeleteHotel(hotel.id)}>
-                  Delete
-                </button>
+                <div className="flex items-center justify-start gap-4">
+                  <div>
+                    <button
+                      className="bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded flex items-center"
+                      onClick={() => handleOpenEditHotel(hotel.id)}>
+                      <FontAwesomeIcon icon={faEdit} className="mr-2 text-lg" />
+                      <p className="ml-auto">Edit</p>
+                    </button>
+                  </div>
+                  <div>
+                    <button
+                      className="bg-red-500 text-white px-4 py-2 rounded flex items-center"
+                      onClick={() => handleDeleteHotel(hotel.id)}>
+                      <FontAwesomeIcon
+                        icon={faTrash}
+                        className="mr-2 text-lg"
+                      />
+                      Delete
+                    </button>
+                  </div>
+                </div>
               </td>
             </tr>
           ))}

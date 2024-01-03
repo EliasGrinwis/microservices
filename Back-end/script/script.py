@@ -1,7 +1,7 @@
 import asyncio
 import aiohttp
 
-gateway_url = "https://api-gateway-eliasgrinwis.cloud.okteto.net/hotels"
+gateway_url = "http://localhost:7000/test/bnb"
 num_requests = 1000
 
 async def send_request(session, url):

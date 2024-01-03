@@ -4,6 +4,8 @@ import Error from "../components/error";
 import RoomApi from "../apis/room_api";
 import HotelApi from "../apis/hotel_api";
 import {storage, ref, uploadBytes, getDownloadURL} from "../config/firebase";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faAdd} from "@fortawesome/free-solid-svg-icons";
 
 function ManageRooms({userToken}) {
   const [rooms, setRooms] = useState([]);
@@ -51,6 +53,15 @@ function ManageRooms({userToken}) {
   };
 
   const closeCreateModal = () => {
+    setNewRoomData({
+      description: "",
+      pricePerDay: "",
+      amountOfBeds: "",
+      roomSize: "",
+      kitchen: "",
+      television: "",
+      picture: "",
+    });
     setIsCreateModalOpen(false);
   };
 
@@ -96,16 +107,17 @@ function ManageRooms({userToken}) {
   return (
     <div>
       <h1 className="text-4xl font-bold mb-2">Manage Rooms</h1>
-      <div className="mb-3 text-end">
+      <div className="mb-3 flex justify-end">
         <button
-          className="bg-green-500 text-white px-4 py-2 rounded"
+          className="bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded flex items-center"
           onClick={showCreateModal}>
-          Create
+          <FontAwesomeIcon icon={faAdd} className="mr-2 text-lg" />
+          <p className="ml-auto">Create</p>
         </button>
       </div>
       {isCreateModalOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-          <div className="bg-white p-6 rounded-lg w-96">
+          <div className="bg-white p-6 rounded-lg sm:w-[40%]">
             <h2 className="text-2xl font-bold mb-4">Create Room</h2>
 
             {/* Form fields for new hotel data */}
@@ -283,7 +295,7 @@ function ManageRooms({userToken}) {
             {/* Buttons for creating and canceling */}
             <div className="flex mt-4">
               <button
-                className="bg-green-500 text-white px-4 py-2 rounded"
+                className="bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded"
                 onClick={handleCreateRoom}>
                 Create Room
               </button>
