@@ -38,7 +38,7 @@ public class HotelService {
             hotel1.setName("Hotel Guayarmina Princess");
             hotel1.setDescription("Centrally located, the Greek-inspired Guayarmina Princess Hotel offers easy access to the beach, downtown, promenade, and attractions. Named after a Canarian princess, expect a regal stay.");
             hotel1.setCity("Costa Adeje");
-            hotel1.setAddress("C. Londres, 1, 38670 Costa Adeje, Santa Cruz de Tenerife, Spanje");
+            hotel1.setAddress("Guayarmina Princess, C. Londres, 1, 38670 Costa Adeje, Santa Cruz de Tenerife, Spanje");
             hotel1.setImage("https://firebasestorage.googleapis.com/v0/b/microservices-402412.appspot.com/o/hotel1.jpg?alt=media&token=829a8e9e-dd28-47a4-af4e-100b81f0dc8f");
             hotel1.setRoomIds(List.of(1L));
             hotelRepository.save(hotel1);
@@ -47,7 +47,7 @@ public class HotelService {
             hotel2.setName("Luxury Resort Paradise");
             hotel2.setDescription("Indulge in the ultimate luxury experience at our resort paradise with breathtaking views.");
             hotel2.setCity("Side");
-            hotel2.setAddress("Side, İnönü Blv. No:35-1 D:1, 07330 Manavgat/Antalya, Turkije");
+            hotel2.setAddress("Side, Horus Paradise Luxury Resort Hotel, İnönü Blv. No:35-1 D:1, 07330 Manavgat/Antalya, Turkije");
             hotel2.setImage("https://images2.bovpg.net/fwxl/media/1/3/8/7/8/387829.jpg");
             hotel2.setRoomIds(List.of(2L, 3L));
             hotelRepository.save(hotel2);
