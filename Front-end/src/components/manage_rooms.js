@@ -109,7 +109,7 @@ function ManageRooms({userToken}) {
       <h1 className="text-4xl font-bold mb-2">Manage Rooms</h1>
       <div className="mb-3 flex justify-end">
         <button
-          className="bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded flex items-center"
+          className="bg-teal-600 hover:bg-teal-500 text-white px-4 py-2 rounded flex items-center"
           onClick={showCreateModal}>
           <FontAwesomeIcon icon={faAdd} className="mr-2 text-lg" />
           <p className="ml-auto">Create</p>
@@ -295,7 +295,7 @@ function ManageRooms({userToken}) {
             {/* Buttons for creating and canceling */}
             <div className="flex mt-4">
               <button
-                className="bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded"
+                className="bg-teal-600 hover:bg-teal-500 text-white px-4 py-2 rounded"
                 onClick={handleCreateRoom}>
                 Create Room
               </button>

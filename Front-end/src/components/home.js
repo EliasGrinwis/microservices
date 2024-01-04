@@ -22,7 +22,7 @@ function Home() {
             getaway!
           </p>
           <a href="#featured-hotels">
-            <button className="bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-3 px-6 rounded-full">
+            <button className="bg-teal-600 hover:bg-teal-500 text-white font-bold py-3 px-6 rounded-full">
               Explore Hotels
             </button>
           </a>
@@ -36,7 +36,7 @@ function Home() {
           <h2 className="text-3xl lg:text-4xl font-bold text-black">
             Featured Hotels
           </h2>
-          <hr className="my-3 w-14 mx-auto md:mx-0  border-indigo-600 border" />
+          <hr className="my-3 w-14 mx-auto md:mx-0  border-teal-600 border" />
           <p className="text-custom-grey-text text-lg">
             Your perfect holiday destination awaits you.
           </p>

@@ -28,33 +28,33 @@ public class RoomService {
     public void loadData() {
         if(roomRepository.count() <= 0){
             Room room = new Room();
-            room.setDescription("Deluxe Room with City View");
-            room.setPricePerDay(200);  // Adjusted for realism
+            room.setDescription("Deluxe room with see view");
+            room.setPricePerDay(199);  // Adjusted for realism
             room.setAmountOfBeds(2);
             room.setRoomSize(30);  // Adjusted for realism
             room.setKitchen(true);
             room.setTelevision(true);
-            room.setPicture("https://firebasestorage.googleapis.com/v0/b/microservices-402412.appspot.com/o/kamer1.jpg?alt=media&token=09927356-3def-4eec-acec-680205bb2b12");
+            room.setPicture("https://firebasestorage.googleapis.com/v0/b/microservices-402412.appspot.com/o/room1.jpg?alt=media&token=4cfc86fc-bca9-4ce9-ad02-a054c76ca251");
             roomRepository.save(room);
 
             Room room2 = new Room();
-            room2.setDescription("Ocean View Suite");
+            room2.setDescription("Ocean view suite");
             room2.setPricePerDay(349);  // Adjusted for realism
-            room2.setAmountOfBeds(3);
+            room2.setAmountOfBeds(2);
             room2.setRoomSize(50);  // Adjusted for realism
             room2.setKitchen(true);
             room2.setTelevision(true);
-            room2.setPicture("https://firebasestorage.googleapis.com/v0/b/microservices-402412.appspot.com/o/ocean_view.jpg?alt=media&token=f7ac499f-a1a0-4f5d-b4f5-bb421a2f0308");
+            room2.setPicture("https://firebasestorage.googleapis.com/v0/b/microservices-402412.appspot.com/o/room2.jpg?alt=media&token=137b3666-0582-4acf-81b5-75980ad7358f");
             roomRepository.save(room2);
 
             Room room3 = new Room();
-            room3.setDescription("Beachfront Bungalow");
-            room3.setPricePerDay(399);  // Adjusted for realism
-            room3.setAmountOfBeds(2);
+            room3.setDescription("Room with see view");
+            room3.setPricePerDay(299);  // Adjusted for realism
+            room3.setAmountOfBeds(3);
             room3.setRoomSize(40);  // Adjusted for realism
             room3.setKitchen(true);
             room3.setTelevision(true);
-            room3.setPicture("https://firebasestorage.googleapis.com/v0/b/microservices-402412.appspot.com/o/bungalow.gif?alt=media&token=e6b13d97-524a-40d7-80b7-aa2e2e4487dd");
+            room3.setPicture("https://firebasestorage.googleapis.com/v0/b/microservices-402412.appspot.com/o/room3.jpg?alt=media&token=d5bd1d33-618f-4db6-8018-b1d867d00f68");
 
             roomRepository.save(room3);
         }

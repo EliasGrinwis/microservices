@@ -4,7 +4,7 @@ import Loading from "../components/loading";
 import Error from "../components/error";
 
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faBed, faMapMarkerAlt} from "@fortawesome/free-solid-svg-icons";
+import {faBed, faMap, faMapMarkerAlt} from "@fortawesome/free-solid-svg-icons";
 import {Link} from "react-router-dom";
 
 function HotelList() {
@@ -66,9 +66,21 @@ function HotelList() {
         <p className="text-gray-700 mb-16 overflow-hidden">
           {hotel.description}
         </p>
+        <div className="absolute bottom-5 left-6">
+          <FontAwesomeIcon icon={faMap} className="mr-2 text-gray-700" />
+          <a
+            href={`https://www.google.com/maps?q=${encodeURIComponent(
+              hotel.address + ", " + hotel.city
+            )}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-teal-600 hover:underline">
+            View Map
+          </a>
+        </div>
         <div className="absolute bottom-5 right-6">
           <Link to={"hotel/" + hotel.id}>
-            <button className="bg-indigo-600 hover:bg-indigo-500 text-white p-2 rounded-md">
+            <button className="bg-teal-600 hover:bg-teal-500 text-white p-2 rounded-md">
               View Rooms
             </button>
           </Link>

@@ -128,7 +128,7 @@ function Room() {
                       )}
                     </div>
                     <div className="mt-4">
-                      <button className="bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-md">
+                      <button className="bg-teal-600 hover:bg-teal-500 text-white px-4 py-2 rounded-md">
                         Book Now
                       </button>
                     </div>
